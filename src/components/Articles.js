@@ -1,17 +1,24 @@
 import "./styles/Articles.css";
-import { getArticles } from "../utils/api";
+import { getArticles, getTopics } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ArticleSelector from "./ArticleSelector";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
-  console.log(articles);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const topic = searchParams.get("topic");
+  const sort_by = searchParams.get("sort_by");
+  const order = searchParams.get("order");
+  console.log("SORT ORDER", order);
+
   useEffect(() => {
-    getArticles().then(setArticles);
-  }, []);
+    getArticles(topic, sort_by, order).then(setArticles);
+  }, [topic, sort_by, order]);
   return (
     <div className="Articles">
-      <p> Here are some articles! </p>
+      <ArticleSelector setSearchParams={setSearchParams} />
       <main className="articles-container">
         {articles.map((article) => {
           return (
