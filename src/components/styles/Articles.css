@@ -1,3 +1,16 @@
 .Articles {
   border: 1px solid blue;
 }
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+.article-container {
+  border: 1px solid black;
+  width: 100%;
+  max-width: 400px;
+}
