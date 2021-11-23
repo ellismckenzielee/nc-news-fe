@@ -1,0 +1,21 @@
+.ArticleSelector {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.article-selector-form {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0.8em;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+select {
+  padding: 0.8em;
+}
+
+button {
+  padding: 0.8em;
+}

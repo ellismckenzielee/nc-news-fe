@@ -22,6 +22,7 @@ const ArticleSelector = ({ setSearchParams }) => {
   return (
     <div className="ArticleSelector">
       <form
+        className="article-selector-form"
         onSubmit={(e) => {
           e.preventDefault();
           const params = { sort_by, order };
@@ -30,44 +31,57 @@ const ArticleSelector = ({ setSearchParams }) => {
           setSearchParams(params);
         }}
       >
-        <label className="category-form-select-label">Category</label>
-        <select
-          onChange={(e) => {
-            setTopic(e.target.value);
-          }}
-        >
-          <option value="">All Categories </option>
-          {topics.map((topic) => {
-            return (
-              <option value={topic.slug} className="select-form-topics" key={topic.slug}>
-                {topic.slug}
-              </option>
+        <fieldset>
+          <label className="article-=selector-category-label">Category</label>
+          <select
+            className="article-selector-category"
+            onChange={(e) => {
+              setTopic(e.target.value);
+            }}
+          >
+            <option value="">All Categories </option>
+            {topics.map((topic) => {
+              return (
+                <option value={topic.slug} className="select-form-topics" key={topic.slug}>
+                  {topic.slug}
+                </option>
+              );
+            })}
+          </select>
+        </fieldset>
+        <fieldset>
+          <label className="article-=selector-sort-by-label">Sort</label>
+          <select
+            className="article-selector-sort_by"
+            onChange={(e) => {
+              setSortBy(e.target.value);
+            }}
+          >
+            <option value=""> Creation Date </option>
+            {Object.keys(sort_by_object).map((key) => {
+              return (
+                <option value={sort_by_object[key]} className="select-form-sort_by" key={key}>
+                  {key}
+                </option>
+              );
+            })}
+          </select>
+        </fieldset>
+        <fieldset>
+          <label className="article-=selector-sort-order-label">Sort Order</label>
+
+          <select
+            className="article-selector-sort-order"
+            onChange={(e) => {
+              setOrder(e.target.value);
+            }}
+          >
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
             );
-          })}
-        </select>
-        <select
-          onChange={(e) => {
-            setSortBy(e.target.value);
-          }}
-        >
-          <option value=""> Creation Date </option>
-          {Object.keys(sort_by_object).map((key) => {
-            return (
-              <option value={sort_by_object[key]} className="select-form-sort_by" key={key}>
-                {key}
-              </option>
-            );
-          })}
-        </select>
-        <select
-          onChange={(e) => {
-            setOrder(e.target.value);
-          }}
-        >
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-          );
-        </select>
+          </select>
+        </fieldset>
+
         <button type="submit">Submit </button>
       </form>
     </div>

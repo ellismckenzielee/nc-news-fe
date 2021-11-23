@@ -1,0 +1,14 @@
+.ArticleCard {
+  border: 1px solid black;
+  width: 100%;
+  max-width: 400px;
+}
+
+.article-card-button {
+  background-color: #d7263d;
+  color: white;
+  padding: 0.8em;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
