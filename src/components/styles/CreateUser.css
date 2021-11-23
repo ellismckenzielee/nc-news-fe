@@ -1,0 +1,46 @@
+.CreateUser {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content;
+  grid-template-areas:
+    "form form"
+    "sign sign";
+}
+
+.create-user-form-container {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+}
+.create-user-form {
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 500px;
+}
+.create-user-avatar-preview {
+  height: 200px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 500px;
+}
+
+.avatar-preview {
+  height: 200px;
+}
+
+.create-user-sign-in {
+  grid-area: sign;
+}
+
+.avatar-preview-button {
+  display: block;
+  margin: 0 auto;
+}
