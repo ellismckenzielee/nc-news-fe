@@ -4,7 +4,7 @@ const ArticleCard = ({ article }) => {
   const { article_id, title, author, created_at, topic, total_count, votes } = article;
   return (
     <div className="ArticleCard">
-      <article className="article-container" key={article_id}>
+      <article className="article-container">
         <h3> {title} </h3>
         <h5>{author}</h5>
         <h6>{created_at}</h6>

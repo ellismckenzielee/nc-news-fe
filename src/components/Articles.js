@@ -22,7 +22,7 @@ const Articles = () => {
       <ArticleSelector setSearchParams={setSearchParams} />
       <main className="articles-container">
         {articles.map((article) => {
-          return <ArticleCard article={article} />;
+          return <ArticleCard key={article.article_id} article={article} />;
         })}
       </main>
     </div>

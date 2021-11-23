@@ -5,7 +5,8 @@
 
 .article-selector-form {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+
   align-items: center;
   padding: 0.8em;
   flex-wrap: wrap;
@@ -18,4 +19,12 @@ select {
 
 button {
   padding: 0.8em;
+}
+
+fieldset {
+  border: none;
+}
+
+fieldset > * {
+  margin: 0.2em;
 }

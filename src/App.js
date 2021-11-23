@@ -5,8 +5,12 @@ import ArticleDetail from "./components/ArticleDetail";
 import { BrowserRouter, Routes, Navigate, Route } from "react-router-dom";
 
 import "./App.css";
+import { useContext, useState } from "react";
+import { UserContext } from "./contexts/UserContext";
 
 function App() {
+  const user = useContext(UserContext);
+  console.log("USER", user);
   return (
     <BrowserRouter>
       <div className="App">
