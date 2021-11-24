@@ -10,6 +10,7 @@ import "./App.css";
 import { useContext, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 import Login from "./components/Login";
+import UserDetail from "./components/userDetail";
 
 function App() {
   const user = useContext(UserContext);
@@ -23,10 +24,10 @@ function App() {
           <Route path="/" element={<Navigate replace to="/articles" />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/create" element={<CreateArticle />} />
-
           <Route path="/articles/:article_id" element={<ArticleDetail />} />
           <Route path="/users/login" element={<Login />} />
           <Route path="/users/create" element={<CreateUser />} />
+          <Route path="/users/:username" element={<UserDetail />} />
         </Routes>
       </div>
     </BrowserRouter>

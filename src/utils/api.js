@@ -59,3 +59,8 @@ export const deleteComment = async (comment_id) => {
   const response = await ncNewsApi.delete(`/comments/${comment_id}`);
   return response;
 };
+
+export const getUserByUsername = async (username) => {
+  const response = await ncNewsApi.get(`/users/${username}`);
+  return response.data.user;
+};

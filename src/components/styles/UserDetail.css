@@ -1,0 +1,17 @@
+.UserDetails {
+  width: 100%;
+}
+
+.user-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Roboto Mono", monospace;
+}
+
+.user-details-image {
+  border: 1px solid black;
+  width: 70%;
+  min-width: 500px;
+  margin: 0 auto;
+}
