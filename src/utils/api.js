@@ -4,12 +4,14 @@ const ncNewsApi = axios.create({
   baseURL: "https://nc-news-ellis.herokuapp.com/api/",
 });
 
-export const getArticles = async (topic, sort_by, order) => {
+export const getArticles = async (topic, sort_by, order, p, limit = 6) => {
   console.log(topic, order, sort_by);
   const params = {
     topic,
     sort_by,
     order,
+    p,
+    limit,
   };
   const response = await ncNewsApi.get("/articles", { params });
   return response.data.articles;

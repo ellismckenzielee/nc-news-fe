@@ -11,3 +11,7 @@ main {
   gap: 20px;
   align-items: stretch;
 }
+
+.page-buttons {
+  width: 100%;
+}
