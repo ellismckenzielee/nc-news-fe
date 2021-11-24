@@ -15,7 +15,7 @@ const ArticleDetail = () => {
   const [voteIncrement, setVoteIncrement] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
   const [commentBody, setCommentBody] = useState("");
-  const navigate = useNavigate();
+
   useEffect(() => {
     getArticleById(article_id).then(setArticle);
     getCommentsByArticleId(article_id).then(setComments);
@@ -56,7 +56,7 @@ const ArticleDetail = () => {
       <section className="article-comments-container">
         <h2 className="article-detail-comments-header"> Comments </h2>
         {comments.map((comment) => {
-          return <CommentCard key={comment.comment_id} comment={comment} />;
+          return <CommentCard setComments={setComments} key={comment.comment_id} comment={comment}></CommentCard>;
         })}
       </section>
       <section className="article-comments-form-container">

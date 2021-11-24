@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { patchComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
-const CommentCard = ({ comment }) => {
+import { deleteComment } from "../utils/api";
+const CommentCard = ({ comment, setComments }) => {
   const { user } = useContext(UserContext);
   const { author, created_at, body, votes, comment_id } = comment;
   const [voteIncrement, setVoteIncrement] = useState(0);
@@ -36,7 +37,21 @@ const CommentCard = ({ comment }) => {
             >
               Vote Down
             </button>
-            {user === author && <button className="comment-delete-button"> Delete </button>}
+            {user === comment.author && (
+              <button
+                onClick={() => {
+                  deleteComment(comment_id).then(() => {
+                    setComments((prev) => {
+                      return prev.filter((comment) => comment.comment_id !== comment_id);
+                    });
+                  });
+                }}
+                className="comment-delete-button"
+              >
+                {" "}
+                Delete{" "}
+              </button>
+            )}
           </div>
         )}
       </article>
