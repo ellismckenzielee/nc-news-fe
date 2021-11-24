@@ -9,46 +9,81 @@ const Navbar = () => {
   const { pathname } = useLocation();
   let loginDisabled = pathname === "/users/login";
   console.log(loginDisabled, pathname);
+  const viewArticles = (
+    <button
+      onClick={() => {
+        navigate("/articles");
+      }}
+    >
+      Articles
+    </button>
+  );
+
+  const createArticle = (
+    <button
+      onClick={() => {
+        if (!loggedIn) {
+          navigate("/users/login");
+        } else {
+          navigate("/articles/create");
+        }
+      }}
+    >
+      Create An Article
+    </button>
+  );
+
+  const viewProfile = (
+    <button
+      onClick={() => {
+        if (!loggedIn) {
+          navigate("/users/login");
+        } else {
+          navigate(`/users/${user}`);
+        }
+      }}
+    >
+      My Profile
+    </button>
+  );
+
+  const logoutButton = (
+    <button
+      onClick={() => {
+        logout();
+        navigate("/");
+      }}
+    >
+      Sign Out
+    </button>
+  );
+
+  const loginButton = (
+    <button
+      onClick={() => {
+        logout();
+        navigate("/users/login");
+      }}
+    >
+      Login
+    </button>
+  );
   if (loggedIn) {
     return (
-      <div className="Navbar">
-        <button
-          onClick={() => {
-            navigate("/articles");
-          }}
-        >
-          Articles
-        </button>
-        <button
-          onClick={() => {
-            navigate("/articles/create");
-          }}
-        >
-          Create An Article
-        </button>
-        <button
-          onClick={() => {
-            navigate(`/users/${user}`);
-          }}
-        >
-          My Profile
-        </button>
-        <button
-          onClick={() => {
-            logout();
-            navigate("/");
-          }}
-        >
-          Sign Out
-        </button>
+      <div className="NavBar">
+        {viewArticles}
+        {createArticle}
+        {viewProfile}
+        {logoutButton}
       </div>
     );
   } else {
     return (
-      <div className="Navbar">
-        <Link className={loginDisabled ? "disabled" : ""} to="/users/login">
-          Login
-        </Link>
+      <div className="NavBar">
+        {viewArticles}
+        {createArticle}
+        {viewProfile}
+        {loginButton}
       </div>
     );
   }
