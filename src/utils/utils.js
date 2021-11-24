@@ -5,6 +5,7 @@ const ncNewsApi = axios.create({
 });
 
 export const login = async (username) => {
+  /* Get request to API simulates login */
   try {
     const response = await ncNewsApi.get(`users/${username}`);
     console.log(response);
@@ -36,6 +37,7 @@ export const createPaginationButtons = (total, limit, setSearchParams) => {
 };
 
 export const handleLoginForm = async (username) => {
+  /* Simple login form checking (length >0, alphanumeric & user exists) */
   if (!username) return "Please enter a username";
   if (!/^[a-zA-Z0-9]+$/.test(username)) return "Please use only alphanumeric characters";
   const code = await login(username);
