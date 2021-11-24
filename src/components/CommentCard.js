@@ -1,11 +1,14 @@
 import "./styles/CommentCard.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { patchComment } from "../utils/api";
+import { UserContext } from "../contexts/UserContext";
 const CommentCard = ({ comment }) => {
+  const { user } = useContext(UserContext);
   const { author, created_at, body, votes, comment_id } = comment;
   const [voteIncrement, setVoteIncrement] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
+
   return (
     <div className="CommentCard">
       <article className="comment-container">
@@ -33,6 +36,7 @@ const CommentCard = ({ comment }) => {
             >
               Vote Down
             </button>
+            {user === author && <button className="comment-delete-button"> Delete </button>}
           </div>
         )}
       </article>

@@ -1,17 +1,21 @@
 import "./styles/ArticleDetail.css";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 import { getArticleById, getCommentsByArticleId } from "../utils/api";
 import CommentCard from "./CommentCard";
 import { patchArticle } from "../utils/api";
+import { postComment } from "../utils/api";
+import { UserContext } from "../contexts/UserContext";
 
 const ArticleDetail = () => {
   const { article_id } = useParams();
+  const { user } = useContext(UserContext);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [voteIncrement, setVoteIncrement] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
-
+  const [commentBody, setCommentBody] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     getArticleById(article_id).then(setArticle);
     getCommentsByArticleId(article_id).then(setComments);
@@ -54,6 +58,31 @@ const ArticleDetail = () => {
         {comments.map((comment) => {
           return <CommentCard key={comment.comment_id} comment={comment} />;
         })}
+      </section>
+      <section className="article-comments-form-container">
+        <h3 className="article-detail-create-comment-header"> Post A Comment </h3>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            postComment({ username: user, body: commentBody }, article_id).then((article) => {
+              setComments((prev) => {
+                return [...prev, article];
+              });
+            });
+          }}
+          className="article-detail-comments-form"
+        >
+          <label htmlFor="article-comment-body">Content</label>
+          <input
+            onChange={(e) => {
+              setCommentBody(e.target.value);
+            }}
+            type="text"
+            id="article-comment-body"
+            value={commentBody}
+          ></input>
+          <button className="article-comment-submit-button">Submit Comment </button>
+        </form>
       </section>
     </div>
   );

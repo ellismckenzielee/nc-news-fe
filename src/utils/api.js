@@ -48,3 +48,9 @@ export const postArticle = async (article) => {
   const response = await ncNewsApi.post(`/articles`, article);
   return response.data.article;
 };
+
+export const postComment = async (comment, article_id) => {
+  console.log(comment, article_id);
+  const response = await ncNewsApi.post(`/articles/${article_id}/comments`, comment);
+  return response.data.comment;
+};
