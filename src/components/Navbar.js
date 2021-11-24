@@ -1,12 +1,14 @@
 import "./styles/Navbar.css";
 import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const { loggedIn, user, logout } = useContext(UserContext);
   const navigate = useNavigate();
-  console.log("USER", user, "LOGGED In", loggedIn);
+  const { pathname } = useLocation();
+  let loginDisabled = pathname === "/users/login";
+  console.log(loginDisabled, pathname);
   if (loggedIn) {
     return (
       <div className="Navbar">
@@ -44,7 +46,9 @@ const Navbar = () => {
   } else {
     return (
       <div className="Navbar">
-        <Link to="/users/login">Login</Link>
+        <Link className={loginDisabled ? "disabled" : ""} to="/users/login">
+          Login
+        </Link>
       </div>
     );
   }

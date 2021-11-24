@@ -10,7 +10,7 @@ import "./App.css";
 import { useContext, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 import Login from "./components/Login";
-import UserDetail from "./components/userDetail";
+import UserDetail from "./components/UserDetail";
 
 function App() {
   const user = useContext(UserContext);

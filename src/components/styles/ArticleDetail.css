@@ -6,3 +6,19 @@
 .article-detail-title {
   font-family: "Roboto Mono", monospace;
 }
+
+.article-detail-comments-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  min-width: 500px;
+  margin: 0 auto;
+}
+
+.article-detail-comments-form > * {
+  margin: 0.2em;
+}
+
+.article-detail-comments-header {
+  font-family: "Roboto Mono", monospace;
+}

@@ -1,16 +1,18 @@
 .ArticleSelector {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
 }
 
-.article-selector-form {
+.article-selector-form-flex {
   display: flex;
   justify-content: center;
-
   align-items: center;
   padding: 0.8em;
   flex-wrap: wrap;
   gap: 20px;
+}
+form {
+  padding: 20px;
 }
 
 select {
@@ -21,10 +23,14 @@ button {
   padding: 0.8em;
 }
 
-fieldset {
+.article-selector-form-fieldset {
   border: none;
+  width: 32%;
+  display: flex;
+  min-width: 460px;
+  flex-direction: column;
 }
 
-fieldset > * {
+.article-selector-form-fieldset > * {
   margin: 0.2em;
 }

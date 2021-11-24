@@ -1,6 +1,6 @@
 import "./styles/Login.css";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router-dom";
 import { handleLoginForm, login } from "../utils/utils";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";

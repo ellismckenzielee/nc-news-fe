@@ -72,7 +72,7 @@ const ArticleDetail = () => {
           }}
           className="article-detail-comments-form"
         >
-          <label htmlFor="article-comment-body">Content</label>
+          <label htmlFor="article-comment-label">Content</label>
           <input
             onChange={(e) => {
               setCommentBody(e.target.value);

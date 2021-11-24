@@ -1,0 +1,15 @@
+.CreateArticle {
+  width: 100%;
+}
+
+.create-article-form {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  min-width: 500px;
+  margin: 0 auto;
+}
+
+.create-article-form > * {
+  margin: 0.2em;
+}
