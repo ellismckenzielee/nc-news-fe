@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Articles from "./components/Articles";
 import CreateUser from "./components/CreateUser";
 import ArticleDetail from "./components/ArticleDetail";
+import CreateArticle from "./components/CreateArticle";
 import { BrowserRouter, Routes, Navigate, Route } from "react-router-dom";
 
 import "./App.css";
@@ -21,6 +22,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate replace to="/articles" />} />
           <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/create" element={<CreateArticle />} />
+
           <Route path="/articles/:article_id" element={<ArticleDetail />} />
           <Route path="/users/login" element={<Login />} />
           <Route path="/users/create" element={<CreateUser />} />
