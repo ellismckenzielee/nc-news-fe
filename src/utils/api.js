@@ -29,3 +29,7 @@ export const getTopics = async () => {
   const response = await ncNewsApi.get("/topics");
   return response.data.topics;
 };
+
+export const postUser = async (username, avatar_url) => {
+  const response = await ncNewsApi.post("/users", { username, avatar_url });
+};

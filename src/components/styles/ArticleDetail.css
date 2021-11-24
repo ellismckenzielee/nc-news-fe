@@ -1,0 +1,8 @@
+.article-detail-container {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.article-detail-title {
+  font-family: "Roboto Mono", monospace;
+}

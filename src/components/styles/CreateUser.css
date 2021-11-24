@@ -24,6 +24,7 @@
   flex-direction: column;
   margin: 0 auto;
   width: 500px;
+  flex-grow: 1;
 }
 .create-user-avatar-preview {
   height: 200px;

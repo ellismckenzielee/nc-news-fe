@@ -1,7 +1,13 @@
 import "./styles/CreateUser.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { postUser } from "../utils/api";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
+
 const CreateUser = () => {
+  const { user, setUser } = useContext(UserContext);
+  console.log(user);
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const [previewAvatar, setPreviewAvatar] = useState("");
@@ -9,7 +15,15 @@ const CreateUser = () => {
   return (
     <div className="CreateUser">
       <div className="create-user-form-container">
-        <form className="create-user-form">
+        <form
+          className="create-user-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            postUser(username).then(() => {
+              setUser(username);
+            });
+          }}
+        >
           <label htmlFor="username">Enter Username</label>
           <input
             onChange={(e) => {
