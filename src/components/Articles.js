@@ -12,7 +12,6 @@ const Articles = () => {
   const topic = searchParams.get("topic");
   const sort_by = searchParams.get("sort_by");
   const order = searchParams.get("order");
-  console.log("SORT ORDER", order);
 
   useEffect(() => {
     getArticles(topic, sort_by, order).then(setArticles);

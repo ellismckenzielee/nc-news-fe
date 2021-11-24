@@ -3,8 +3,8 @@ import { createContext, useState } from "react";
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState("Jim");
-  const loggedIn = user.username ? true : false;
+  const [user, setUser] = useState("");
+  const loggedIn = user.length > 0 ? true : false;
   return <UserContext.Provider value={{ setUser, user, loggedIn }}> {children}</UserContext.Provider>;
 };
 

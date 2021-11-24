@@ -18,7 +18,7 @@ const ArticleSelector = ({ setSearchParams }) => {
   };
   useEffect(() => {
     getTopics().then(setTopics);
-  });
+  }, []);
   return (
     <div className="ArticleSelector">
       <form

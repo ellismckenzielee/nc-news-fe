@@ -5,26 +5,32 @@ import { useNavigate } from "react-router";
 
 const Navbar = () => {
   const { loggedIn, user } = useContext(UserContext);
-  let buttonContent = "";
-  let buttonPath = "";
   const navigate = useNavigate();
+  console.log("USER", user, "LOGGED In", loggedIn);
   if (loggedIn) {
-    buttonContent = "Create Article";
-    buttonPath = "/articles/create";
+    return (
+      <div className="Navbar">
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Create An Article
+        </button>
+      </div>
+    );
   } else {
-    buttonContent = "Login";
-    buttonPath = "/users/login";
+    return (
+      <div className="Navbar">
+        <button
+          onClick={() => {
+            navigate("users/login");
+          }}
+        >
+          Login
+        </button>
+      </div>
+    );
   }
-  return (
-    <div className="Navbar">
-      <button
-        onClick={() => {
-          navigate(buttonPath);
-        }}
-      >
-        {buttonContent}
-      </button>
-    </div>
-  );
 };
 export default Navbar;
