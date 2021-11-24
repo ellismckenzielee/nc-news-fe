@@ -36,4 +36,10 @@ export const postUser = async (username, avatar_url) => {
 
 export const patchArticle = async (inc_votes, article_id) => {
   const response = await ncNewsApi.patch(`/articles/${article_id}`, { inc_votes });
+  return response;
+};
+
+export const patchComment = async (inc_votes, comment_id) => {
+  const response = await ncNewsApi.patch(`/comments/${comment_id}`, { inc_votes });
+  return response;
 };
