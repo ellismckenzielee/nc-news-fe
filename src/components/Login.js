@@ -1,12 +1,14 @@
 import "./styles/Login.css";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router";
-import { login } from "../utils/utils";
+import { handleLoginForm, login } from "../utils/utils";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 const Login = () => {
   const [username, setUsername] = useState("");
   const { user, setUser } = useContext(UserContext);
+  const [errorContent, setErrorContent] = useState("");
+
   const navigate = useNavigate();
   return (
     <div className="Login">
@@ -14,9 +16,13 @@ const Login = () => {
         className="login-form"
         onSubmit={(e) => {
           e.preventDefault();
-          login(username).then(() => {
-            setUser(username);
-            navigate("/");
+          handleLoginForm(username).then((result) => {
+            if (result === "success") {
+              setUser(username);
+              navigate("/");
+            } else {
+              setErrorContent(result);
+            }
           });
         }}
       >
@@ -32,6 +38,7 @@ const Login = () => {
           type="text"
           value={username}
         ></input>
+        <p className="login-error"> {errorContent} </p>
         <button className="login-form-submit-button"> Login </button>
       </form>
       <p> Don't have an account? </p>

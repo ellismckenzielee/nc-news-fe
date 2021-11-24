@@ -15,3 +15,6 @@ main {
 .page-buttons {
   width: 100%;
 }
+.page-buttons > * {
+  margin: 0.25em;
+}

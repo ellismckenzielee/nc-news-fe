@@ -13,3 +13,7 @@
 .login-form > * {
   margin: 0.2em;
 }
+
+.login-error {
+  color: red;
+}

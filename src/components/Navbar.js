@@ -1,7 +1,7 @@
 import "./styles/Navbar.css";
 import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { loggedIn, user, logout } = useContext(UserContext);
@@ -30,9 +30,7 @@ const Navbar = () => {
   } else {
     return (
       <div className="Navbar">
-        <nav>
-          <button to="/users/login">Login</button>
-        </nav>
+        <Link to="/users/login">Login</Link>
       </div>
     );
   }
