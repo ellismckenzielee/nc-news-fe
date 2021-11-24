@@ -33,3 +33,7 @@ export const getTopics = async () => {
 export const postUser = async (username, avatar_url) => {
   const response = await ncNewsApi.post("/users", { username, avatar_url });
 };
+
+export const patchArticle = async (inc_votes, article_id) => {
+  const response = await ncNewsApi.patch(`/articles/${article_id}`, { inc_votes });
+};
