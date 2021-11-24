@@ -12,10 +12,24 @@ const Navbar = () => {
       <div className="Navbar">
         <button
           onClick={() => {
+            navigate("/articles");
+          }}
+        >
+          Articles
+        </button>
+        <button
+          onClick={() => {
             navigate("/articles/create");
           }}
         >
           Create An Article
+        </button>
+        <button
+          onClick={() => {
+            navigate(`/users/${user}`);
+          }}
+        >
+          My Profile
         </button>
         <button
           onClick={() => {
