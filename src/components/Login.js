@@ -11,6 +11,7 @@ const Login = () => {
   return (
     <div className="Login">
       <form
+        className="login-form"
         onSubmit={(e) => {
           e.preventDefault();
           login(username).then(() => {
@@ -19,8 +20,11 @@ const Login = () => {
           });
         }}
       >
-        <label htmlFor="username">Enter Username</label>
+        <label className="login-form-username-label" htmlFor="username">
+          Enter Username
+        </label>
         <input
+          className="login-form-username-input"
           onChange={(e) => {
             setUsername(e.target.value);
           }}
@@ -28,7 +32,7 @@ const Login = () => {
           type="text"
           value={username}
         ></input>
-        <button> Login </button>
+        <button className="login-form-submit-button"> Login </button>
       </form>
       <p> Don't have an account? </p>
       <button
