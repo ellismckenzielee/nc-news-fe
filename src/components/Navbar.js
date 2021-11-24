@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 
 const Navbar = () => {
-  const { loggedIn, user } = useContext(UserContext);
+  const { loggedIn, user, logout } = useContext(UserContext);
   const navigate = useNavigate();
   console.log("USER", user, "LOGGED In", loggedIn);
   if (loggedIn) {
@@ -16,6 +16,14 @@ const Navbar = () => {
           }}
         >
           Create An Article
+        </button>
+        <button
+          onClick={() => {
+            logout();
+            navigate("/");
+          }}
+        >
+          Sign Out
         </button>
       </div>
     );
