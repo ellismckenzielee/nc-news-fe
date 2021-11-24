@@ -43,3 +43,8 @@ export const patchComment = async (inc_votes, comment_id) => {
   const response = await ncNewsApi.patch(`/comments/${comment_id}`, { inc_votes });
   return response;
 };
+
+export const postArticle = async (article) => {
+  const response = await ncNewsApi.post(`/articles`, article);
+  return response.data.article;
+};
