@@ -11,6 +11,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 import Login from "./components/Login";
 import UserDetail from "./components/UserDetail";
+import ResourceNotFound from "./components/ResourceNotFound";
 
 function App() {
   const user = useContext(UserContext);
@@ -28,6 +29,7 @@ function App() {
           <Route path="/users/login" element={<Login />} />
           <Route path="/users/create" element={<CreateUser />} />
           <Route path="/users/:username" element={<UserDetail />} />
+          <Route path="*" element={<ResourceNotFound />} />
         </Routes>
       </div>
     </BrowserRouter>
