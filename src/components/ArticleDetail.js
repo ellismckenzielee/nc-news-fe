@@ -1,24 +1,29 @@
 import "./styles/ArticleDetail.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { getArticleById, getCommentsByArticleId } from "../utils/api";
 import CommentCard from "./CommentCard";
 import { patchArticle } from "../utils/api";
 import { postComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
+import { createPaginationButtons } from "../utils/utils";
 
 const ArticleDetail = () => {
   const { article_id } = useParams();
-  const { user } = useContext(UserContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { user, loggedIn } = useContext(UserContext);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [voteIncrement, setVoteIncrement] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
   const [commentBody, setCommentBody] = useState("");
+  const pageNumber = searchParams.get("p");
+  const numberOfComments = comments[0] !== undefined ? comments[0].total_count : 0;
+  const paginationButtons = createPaginationButtons(numberOfComments, 5, setSearchParams);
   const navigate = useNavigate();
   useEffect(() => {
     getArticleById(article_id).then(setArticle);
-    getCommentsByArticleId(article_id).then(setComments);
+    getCommentsByArticleId(article_id, pageNumber).then(setComments);
   }, [article_id]);
   return (
     <div className="ArticleDetail">
@@ -66,31 +71,38 @@ const ArticleDetail = () => {
           return <CommentCard setComments={setComments} key={comment.comment_id} comment={comment}></CommentCard>;
         })}
       </section>
-      <section className="article-comments-form-container">
-        <h3 className="article-detail-create-comment-header"> Post A Comment </h3>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            postComment({ username: user, body: commentBody }, article_id).then((article) => {
-              setComments((prev) => {
-                return [...prev, article];
+      {!loggedIn && (
+        <p>
+          Please <Link to="/users/login">login</Link> to post a comment!{" "}
+        </p>
+      )}
+      {loggedIn && (
+        <section className="article-comments-form-container">
+          <h3 className="article-detail-create-comment-header"> Post A Comment </h3>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              postComment({ username: user, body: commentBody }, article_id).then((article) => {
+                setComments((prev) => {
+                  return [...prev, article];
+                });
               });
-            });
-          }}
-          className="article-detail-comments-form"
-        >
-          <label htmlFor="article-comment-label">Content</label>
-          <input
-            onChange={(e) => {
-              setCommentBody(e.target.value);
             }}
-            type="text"
-            id="article-comment-body"
-            value={commentBody}
-          ></input>
-          <button className="article-comment-submit-button">Submit Comment </button>
-        </form>
-      </section>
+            className="article-detail-comments-form"
+          >
+            <label htmlFor="article-comment-label">Content</label>
+            <input
+              onChange={(e) => {
+                setCommentBody(e.target.value);
+              }}
+              type="text"
+              id="article-comment-body"
+              value={commentBody}
+            ></input>
+            <button className="article-comment-submit-button">Submit Comment </button>
+          </form>
+        </section>
+      )}
     </div>
   );
 };

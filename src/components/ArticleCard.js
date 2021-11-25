@@ -1,7 +1,7 @@
 import "./styles/ArticleCard.css";
 import { Link } from "react-router-dom";
 const ArticleCard = ({ article }) => {
-  const { article_id, title, author, created_at, topic, total_count, votes } = article;
+  const { article_id, title, author, created_at, topic, comment_count, votes } = article;
   return (
     <div className="ArticleCard">
       <article className="article-container">
@@ -11,7 +11,7 @@ const ArticleCard = ({ article }) => {
         </h5>
         <h6>{created_at}</h6>
         <span>{topic}</span>
-        <p> Comment Count: {total_count}</p>
+        <p> Comment Count: {comment_count}</p>
         <p> Votes: {votes}</p>
         <Link className="article-card-button" to={`/articles/${article_id}`}>
           {" "}

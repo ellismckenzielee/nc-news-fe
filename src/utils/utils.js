@@ -47,3 +47,5 @@ export const handleLoginForm = async (username) => {
     return "Unsuccessful: User Does Not Exist";
   }
 };
+
+export const buildNav = () => {};
