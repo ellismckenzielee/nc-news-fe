@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import ArticleSelector from "./ArticleSelector";
 import ArticleCard from "./ArticleCard";
 import useUpdateParams from "../hooks/useUpdateParams";
+import usePageStatus from "../hooks/usePageStatus";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [topic, sort_by, order, pageNum, paginationButtons, setSearchParams] = useUpdateParams(articles);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading, isError, setIsError] = usePageStatus();
   useEffect(() => {
     setIsLoading(true);
     getArticles(topic, sort_by, order, pageNum)
