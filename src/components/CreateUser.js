@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { handleCreateUserFormSubmission } from "../utils/utils";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
+import useErrorMessages from "../hooks/useErrorMessages";
 
 const CreateUser = () => {
   const { setUser } = useContext(UserContext);
@@ -11,7 +12,7 @@ const CreateUser = () => {
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
   const [previewAvatar, setPreviewAvatar] = useState("");
-  const [error, setError] = useState("");
+  const [errorMessage, setErrorMessage] = useErrorMessages();
   const navigate = useNavigate();
   return (
     <div className="CreateUser">
@@ -22,7 +23,7 @@ const CreateUser = () => {
             e.preventDefault();
             handleCreateUserFormSubmission(username, avatar, name).then((result) => {
               if (result.err) {
-                setError(result.err);
+                setErrorMessage(result.err);
               } else {
                 setUser(username);
               }
@@ -39,7 +40,7 @@ const CreateUser = () => {
             value={username}
             required
           ></input>
-          <p> {error} </p>
+          <p> {errorMessage} </p>
           <label htmlFor="name">Enter Name</label>
           <input
             onChange={(e) => {

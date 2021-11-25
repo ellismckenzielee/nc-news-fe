@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { handleLoginForm } from "../utils/utils";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
+import useErrorMessages from "../hooks/useErrorMessages";
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const { setUser } = useContext(UserContext);
-  const [errorContent, setErrorContent] = useState("");
-
+  const [errorMessage, setErrorMessage] = useErrorMessages();
   const navigate = useNavigate();
   return (
     <div className="Login">
@@ -21,7 +22,7 @@ const Login = () => {
               setUser(username);
               navigate("/");
             } else {
-              setErrorContent(result);
+              setErrorMessage(result);
             }
           });
         }}
@@ -38,7 +39,7 @@ const Login = () => {
           type="text"
           value={username}
         ></input>
-        <p className="login-error"> {errorContent} </p>
+        <p className="login-error"> {errorMessage} </p>
         <button className="login-form-submit-button"> Login </button>
       </form>
       <p> Don't have an account? </p>

@@ -6,7 +6,7 @@ import { getTopics } from "../utils/api";
 import { postArticle } from "../utils/api";
 
 const CreateArticle = () => {
-  const { loggedIn, user, logout } = useContext(UserContext);
+  const { loggedIn, user } = useContext(UserContext);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [topics, setTopics] = useState([]);

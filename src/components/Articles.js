@@ -1,20 +1,13 @@
 import "./styles/Articles.css";
-import { getArticles, getTopics } from "../utils/api";
+import { getArticles } from "../utils/api";
 import { useEffect, useState } from "react";
 import ArticleSelector from "./ArticleSelector";
-import { useSearchParams } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
-import { createPaginationButtons } from "../utils/utils";
+import useUpdateParams from "../hooks/useUpdateParams";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const topic = searchParams.get("topic");
-  const sort_by = searchParams.get("sort_by");
-  const order = searchParams.get("order");
-  const pageNum = searchParams.get("p");
-  const numberOfPages = articles[0] !== undefined ? articles[0].total_count : 0;
-  const paginationButtons = createPaginationButtons(numberOfPages, 6, setSearchParams);
+  const [topic, sort_by, order, pageNum, paginationButtons, setSearchParams] = useUpdateParams(articles);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   useEffect(() => {
@@ -24,7 +17,7 @@ const Articles = () => {
       .then(() => {
         setIsLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setIsLoading(false);
         setIsError(true);
       });

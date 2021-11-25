@@ -7,19 +7,19 @@ import { patchArticle } from "../utils/api";
 import { postComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
 import { handlePostCommentForm } from "../utils/utils";
+import useVotes from "../hooks/useVotes";
 
 const ArticleDetail = () => {
   const { article_id } = useParams();
   const { user, loggedIn } = useContext(UserContext);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
-  const [voteIncrement, setVoteIncrement] = useState(0);
-  const [hasVoted, setHasVoted] = useState(false);
+  const [voteIncrement, setVoteIncrement, hasVoted, setHasVoted] = useVotes();
   const [commentBody, setCommentBody] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
   const [error, setError] = useState("");
-  console.log(comments);
   const numberOfPages = Math.ceil((comments.length ? comments[0].total_count : 0) / 5);
+  const isAuthor = user === article.author;
   const navigate = useNavigate();
   useEffect(() => {
     getArticleById(article_id).then(setArticle);
@@ -29,7 +29,7 @@ const ArticleDetail = () => {
     <div className="ArticleDetail">
       <section className="article-detail-container">
         <h2 className="article-detail-title"> {article.title}</h2>
-        {user === article.author && (
+        {isAuthor && (
           <button
             onClick={() => {
               deleteArticleById(article_id).then(() => {
@@ -46,7 +46,7 @@ const ArticleDetail = () => {
         <p className="article-detail-topic"> {article.topic} </p>
         <p className="article-detail-comment-count"> Comment Count: {article.comment_count} </p>
         <p className="article-detail-votes"> Votes: {article.votes + voteIncrement} </p>
-        {!hasVoted && (
+        {!hasVoted && !isAuthor && (
           <div className="article-vote-container">
             <button
               onClick={() => {
@@ -69,13 +69,15 @@ const ArticleDetail = () => {
           </div>
         )}
         <p className="article-detail-body">{article.body} </p>
-        <button
-          onClick={() => {
-            navigate(`/users/${article.author}`);
-          }}
-        >
-          Visit Author's Page
-        </button>
+        {!isAuthor && (
+          <button
+            onClick={() => {
+              navigate(`/users/${article.author}`);
+            }}
+          >
+            Visit Author's Page
+          </button>
+        )}
       </section>
       <section className="article-comments-container">
         <h2 className="article-detail-comments-header"> Comments </h2>

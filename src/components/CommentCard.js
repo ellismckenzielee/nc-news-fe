@@ -1,14 +1,13 @@
 import "./styles/CommentCard.css";
-import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { patchComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
+import useVotes from "../hooks/useVotes";
 import { deleteComment } from "../utils/api";
 const CommentCard = ({ comment, setComments }) => {
   const { user } = useContext(UserContext);
   const { author, created_at, body, votes, comment_id } = comment;
-  const [voteIncrement, setVoteIncrement] = useState(0);
-  const [hasVoted, setHasVoted] = useState(false);
+  const [voteIncrement, setVoteIncrement, hasVoted, setHasVoted] = useVotes();
 
   return (
     <div className="CommentCard">
