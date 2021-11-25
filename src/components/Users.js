@@ -4,6 +4,7 @@ import UserCard from "./UserCard";
 import "./styles/Users.css";
 const Users = () => {
   const [users, setUsers] = useState([]);
+  console.log(users);
   useEffect(() => {
     getUsers().then(setUsers);
   }, []);
