@@ -1,7 +1,6 @@
 import "./styles/Articles.css";
 import { getArticles, getTopics } from "../utils/api";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import ArticleSelector from "./ArticleSelector";
 import { useSearchParams } from "react-router-dom";
 import ArticleCard from "./ArticleCard";

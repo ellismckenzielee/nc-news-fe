@@ -15,7 +15,7 @@ const ArticleDetail = () => {
   const [voteIncrement, setVoteIncrement] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
   const [commentBody, setCommentBody] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     getArticleById(article_id).then(setArticle);
     getCommentsByArticleId(article_id).then(setComments);
@@ -52,6 +52,13 @@ const ArticleDetail = () => {
           </div>
         )}
         <p className="article-detail-body">{article.body} </p>
+        <button
+          onClick={() => {
+            navigate(`/users/${article.author}`);
+          }}
+        >
+          Visit Author's Page
+        </button>
       </section>
       <section className="article-comments-container">
         <h2 className="article-detail-comments-header"> Comments </h2>

@@ -6,7 +6,9 @@ const ArticleCard = ({ article }) => {
     <div className="ArticleCard">
       <article className="article-container">
         <h3> {title} </h3>
-        <h5>{author}</h5>
+        <h5>
+          <Link to={`/users/${author}`}>{author}</Link>
+        </h5>
         <h6>{created_at}</h6>
         <span>{topic}</span>
         <p> Comment Count: {total_count}</p>
