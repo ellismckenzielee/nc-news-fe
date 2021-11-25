@@ -2,6 +2,7 @@ import "./styles/ArticleCard.css";
 import { Link } from "react-router-dom";
 const ArticleCard = ({ article }) => {
   const { article_id, title, author, created_at, topic, comment_count, votes } = article;
+
   return (
     <div className="ArticleCard">
       <article className="article-container">

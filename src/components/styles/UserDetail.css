@@ -11,7 +11,16 @@
 
 .user-details-image {
   border: 1px solid black;
-  width: 70%;
-  min-width: 500px;
+  width: 500px;
   margin: 0 auto;
+  border-radius: 50%;
+}
+
+.articles-container {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
 }

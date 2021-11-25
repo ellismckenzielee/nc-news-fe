@@ -70,3 +70,12 @@ export const getUserByUsername = async (username) => {
   const response = await ncNewsApi.get(`/users/${username}`);
   return response.data.user;
 };
+
+export const getArticlesByUsername = async (username) => {
+  const response = await ncNewsApi.get(`/users/${username}/articles`);
+  return response.data.articles;
+};
+
+export const deleteArticleById = async (article_id) => {
+  const response = await ncNewsApi.delete(`/articles/${article_id}`);
+};

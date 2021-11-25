@@ -48,4 +48,9 @@ export const handleLoginForm = async (username) => {
   }
 };
 
-export const buildNav = () => {};
+export const handlePostCommentForm = async (username, body) => {
+  if (!username) return "Please Login";
+  if (body.length < 10) return "Please enter more than 10 characters";
+  if (body.length > 100) return "Please enter fewer than 100 characters";
+  return "success";
+};

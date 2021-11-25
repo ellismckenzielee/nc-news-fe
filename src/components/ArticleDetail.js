@@ -1,11 +1,12 @@
 import "./styles/ArticleDetail.css";
 import { useParams, useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
-import { getArticleById, getCommentsByArticleId } from "../utils/api";
+import { getArticleById, getCommentsByArticleId, deleteArticleById } from "../utils/api";
 import CommentCard from "./CommentCard";
 import { patchArticle } from "../utils/api";
 import { postComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
+import { handlePostCommentForm } from "../utils/utils";
 
 const ArticleDetail = () => {
   const { article_id } = useParams();
@@ -16,6 +17,7 @@ const ArticleDetail = () => {
   const [hasVoted, setHasVoted] = useState(false);
   const [commentBody, setCommentBody] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
+  const [error, setError] = useState("");
   console.log(comments);
   const numberOfPages = Math.ceil((comments.length ? comments[0].total_count : 0) / 5);
   const navigate = useNavigate();
@@ -27,6 +29,18 @@ const ArticleDetail = () => {
     <div className="ArticleDetail">
       <section className="article-detail-container">
         <h2 className="article-detail-title"> {article.title}</h2>
+        {user === article.author && (
+          <button
+            onClick={() => {
+              deleteArticleById(article_id).then(() => {
+                navigate("/");
+              });
+            }}
+          >
+            {" "}
+            Delete Article{" "}
+          </button>
+        )}
         <h3 className="article-detail-author"> {article.author} </h3>
         <h3 className="article-detail-created-at"> {article.created_at} </h3>
         <p className="article-detail-topic"> {article.topic} </p>
@@ -99,15 +113,22 @@ const ArticleDetail = () => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              postComment({ username: user, body: commentBody }, article_id).then((article) => {
-                setComments((prev) => {
-                  return [...prev, article];
-                });
+              handlePostCommentForm(user, commentBody).then((result) => {
+                if (result === "success") {
+                  postComment({ username: user, body: commentBody }, article_id).then((article) => {
+                    setError("");
+                    setComments((prev) => {
+                      return [...prev, article];
+                    });
+                  });
+                } else {
+                  setError(result);
+                }
               });
             }}
             className="article-detail-comments-form"
           >
-            <label htmlFor="article-comment-label">Content</label>
+            <label htmlFor="article-comment-label">Content (Between 10 and 100 chaarcters)</label>
             <input
               onChange={(e) => {
                 setCommentBody(e.target.value);
@@ -116,6 +137,7 @@ const ArticleDetail = () => {
               id="article-comment-body"
               value={commentBody}
             ></input>
+            <p> {error} </p>
             <button className="article-comment-submit-button">Submit Comment </button>
           </form>
         </section>
