@@ -6,20 +6,18 @@ import CommentCard from "./CommentCard";
 import { patchArticle } from "../utils/api";
 import { postComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
-import { createPaginationButtons } from "../utils/utils";
 
 const ArticleDetail = () => {
   const { article_id } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
   const { user, loggedIn } = useContext(UserContext);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [voteIncrement, setVoteIncrement] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
   const [commentBody, setCommentBody] = useState("");
-  const pageNumber = searchParams.get("p");
-  const numberOfComments = comments[0] !== undefined ? comments[0].total_count : 0;
-  const paginationButtons = createPaginationButtons(numberOfComments, 5, setSearchParams);
+  const [pageNumber, setPageNumber] = useState(0);
+  console.log(comments);
+  const numberOfPages = Math.ceil((comments.length ? comments[0].total_count : 0) / 5);
   const navigate = useNavigate();
   useEffect(() => {
     getArticleById(article_id).then(setArticle);
@@ -70,6 +68,25 @@ const ArticleDetail = () => {
         {comments.map((comment) => {
           return <CommentCard setComments={setComments} key={comment.comment_id} comment={comment}></CommentCard>;
         })}
+        {pageNumber + 1 < numberOfPages && (
+          <button
+            onClick={() => {
+              const nextPage = pageNumber + 1;
+              getCommentsByArticleId(article_id, nextPage)
+                .then((response) => {
+                  setComments((prev) => {
+                    return [...prev, ...response];
+                  });
+                })
+                .then(() => {
+                  setPageNumber((prev) => prev + 1);
+                });
+            }}
+          >
+            {" "}
+            More Comments...
+          </button>
+        )}
       </section>
       {!loggedIn && (
         <p>

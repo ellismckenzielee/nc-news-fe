@@ -22,9 +22,10 @@ export const getArticleById = async (article_id) => {
   return response.data.article;
 };
 
-export const getCommentsByArticleId = async (article_id, p) => {
+export const getCommentsByArticleId = async (article_id, p, limit = 5) => {
   const params = {
     p,
+    limit,
   };
   const response = await ncNewsApi.get(`/articles/${article_id}/comments`, { params });
   return response.data.comments;
