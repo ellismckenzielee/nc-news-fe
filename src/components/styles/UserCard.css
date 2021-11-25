@@ -9,7 +9,7 @@
 
 .usercard-container {
   display: grid;
-
+  overflow: hidden;
   grid-template-columns: 300px 1fr;
   width: 100%;
 }

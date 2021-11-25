@@ -10,6 +10,7 @@ const CreateUser = () => {
   console.log(user);
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [name, setName] = useState("");
   const [previewAvatar, setPreviewAvatar] = useState("");
   const navigate = useNavigate();
   return (
@@ -19,9 +20,11 @@ const CreateUser = () => {
           className="create-user-form"
           onSubmit={(e) => {
             e.preventDefault();
-            postUser(username).then(() => {
-              setUser(username);
-            });
+            postUser(username, avatar, name)
+              .then(() => {
+                setUser(username);
+              })
+              .catch(console.log);
           }}
         >
           <label htmlFor="username">Enter Username</label>
@@ -32,6 +35,15 @@ const CreateUser = () => {
             id="username"
             type="text"
             value={username}
+          ></input>
+          <label htmlFor="name">Enter Name</label>
+          <input
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            id="name"
+            type="text"
+            value={name}
           ></input>
           <label htmlFor="avatar-input">Enter Avatar URL</label>
           <input

@@ -36,8 +36,10 @@ export const getTopics = async () => {
   return response.data.topics;
 };
 
-export const postUser = async (username, avatar_url) => {
-  const response = await ncNewsApi.post("/users", { username, avatar_url });
+export const postUser = async (username, avatar_url, name) => {
+  console.log(username, avatar_url, name);
+  const response = await ncNewsApi.post("/users", { username, avatar_url, name });
+  return response.data.user;
 };
 
 export const patchArticle = async (inc_votes, article_id) => {
