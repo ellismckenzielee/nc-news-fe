@@ -1,4 +1,5 @@
 import axios from "axios";
+import { postUser } from "./api";
 
 const ncNewsApi = axios.create({
   baseURL: "https://nc-news-ellis.herokuapp.com/api/",
@@ -53,4 +54,14 @@ export const handlePostCommentForm = async (username, body) => {
   if (body.length < 10) return "Please enter more than 10 characters";
   if (body.length > 100) return "Please enter fewer than 100 characters";
   return "success";
+};
+
+export const handleCreateUserFormSubmission = async (username, avatar_url, name) => {
+  try {
+    const response = await postUser(username, name, avatar_url);
+    return response.data.user;
+  } catch (err) {
+    console.log("!!!!!!!!!");
+    return { err: "username already exists" };
+  }
 };

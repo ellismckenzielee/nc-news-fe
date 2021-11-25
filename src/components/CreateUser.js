@@ -1,17 +1,17 @@
 import "./styles/CreateUser.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { postUser } from "../utils/api";
+import { handleCreateUserFormSubmission } from "../utils/utils";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 const CreateUser = () => {
-  const { user, setUser } = useContext(UserContext);
-  console.log(user);
+  const { setUser } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
   const [previewAvatar, setPreviewAvatar] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   return (
     <div className="CreateUser">
@@ -20,11 +20,13 @@ const CreateUser = () => {
           className="create-user-form"
           onSubmit={(e) => {
             e.preventDefault();
-            postUser(username, avatar, name)
-              .then(() => {
+            handleCreateUserFormSubmission(username, avatar, name).then((result) => {
+              if (result.err) {
+                setError(result.err);
+              } else {
                 setUser(username);
-              })
-              .catch(console.log);
+              }
+            });
           }}
         >
           <label htmlFor="username">Enter Username</label>
@@ -35,7 +37,9 @@ const CreateUser = () => {
             id="username"
             type="text"
             value={username}
+            required
           ></input>
+          <p> {error} </p>
           <label htmlFor="name">Enter Name</label>
           <input
             onChange={(e) => {
@@ -44,6 +48,7 @@ const CreateUser = () => {
             id="name"
             type="text"
             value={name}
+            required
           ></input>
           <label htmlFor="avatar-input">Enter Avatar URL</label>
           <input
@@ -53,6 +58,7 @@ const CreateUser = () => {
             id="avatar-input"
             type="text"
             value={avatar}
+            required
           ></input>
 
           <button> Create Account </button>
