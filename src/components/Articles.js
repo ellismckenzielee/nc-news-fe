@@ -16,17 +16,28 @@ const Articles = () => {
   const pageNum = searchParams.get("p");
   const numberOfPages = articles[0] !== undefined ? articles[0].total_count : 0;
   const paginationButtons = createPaginationButtons(numberOfPages, 6, setSearchParams);
-  console.log("PAGIN", numberOfPages);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   useEffect(() => {
-    getArticles(topic, sort_by, order, pageNum).then(setArticles);
+    setIsLoading(true);
+    getArticles(topic, sort_by, order, pageNum)
+      .then(setArticles)
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsError(true);
+      });
   }, [topic, sort_by, order, pageNum]);
   return (
     <div className="Articles">
       <ArticleSelector setSearchParams={setSearchParams} />
       <main className="articles-container">
-        {articles.map((article) => {
-          return <ArticleCard key={article.article_id} article={article} />;
-        })}
+        {!isLoading &&
+          articles.map((article) => {
+            return <ArticleCard key={article.article_id} article={article} />;
+          })}
+        {isLoading && <p> We are currently getting your articles </p>}
         <div className="page-buttons">{paginationButtons}</div>
       </main>
     </div>
