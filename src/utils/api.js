@@ -79,3 +79,8 @@ export const getArticlesByUsername = async (username) => {
 export const deleteArticleById = async (article_id) => {
   const response = await ncNewsApi.delete(`/articles/${article_id}`);
 };
+
+export const getUsers = async () => {
+  const response = await ncNewsApi.get("/users");
+  return response.data.users;
+};
