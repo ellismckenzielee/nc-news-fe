@@ -47,6 +47,16 @@ const Navbar = () => {
     </button>
   );
 
+  const viewUsers = (
+    <button
+      onClick={() => {
+        navigate("/users");
+      }}
+    >
+      Users
+    </button>
+  );
+
   const logoutButton = (
     <button
       onClick={() => {
@@ -72,6 +82,7 @@ const Navbar = () => {
     return (
       <div className="NavBar">
         {viewArticles}
+        {viewUsers}
         {createArticle}
         {viewProfile}
         {logoutButton}
@@ -81,6 +92,7 @@ const Navbar = () => {
     return (
       <div className="NavBar">
         {viewArticles}
+        {viewUsers}
         {createArticle}
         {viewProfile}
         {loginButton}

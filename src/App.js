@@ -4,6 +4,7 @@ import Articles from "./components/Articles";
 import CreateUser from "./components/CreateUser";
 import ArticleDetail from "./components/ArticleDetail";
 import CreateArticle from "./components/CreateArticle";
+import Users from "./components/Users";
 import { BrowserRouter, Routes, Navigate, Route } from "react-router-dom";
 
 import "./App.css";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/users/login" element={<Login />} />
           <Route path="/users/create" element={<CreateUser />} />
           <Route path="/users/:username" element={<UserDetail />} />
+          <Route path="/users" element={<Users />} />
           <Route path="*" element={<ResourceNotFound />} />
         </Routes>
       </div>

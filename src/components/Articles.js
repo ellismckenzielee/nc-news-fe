@@ -25,6 +25,7 @@ const Articles = () => {
         setIsLoading(false);
       })
       .catch((err) => {
+        setIsLoading(false);
         setIsError(true);
       });
   }, [topic, sort_by, order, pageNum]);
@@ -37,6 +38,7 @@ const Articles = () => {
             return <ArticleCard key={article.article_id} article={article} />;
           })}
         {isLoading && <p> We are currently getting your articles </p>}
+        {isError && <p> Oops! Something has gone wrong </p>}
         <div className="page-buttons">{paginationButtons}</div>
       </main>
     </div>

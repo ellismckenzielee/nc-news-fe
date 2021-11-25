@@ -1,5 +1,4 @@
 import "./styles/UserDetail.css";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticlesByUsername, getUserByUsername } from "../utils/api";
 import { useParams } from "react-router";
@@ -8,6 +7,7 @@ const UserDetail = () => {
   const [userDetails, setUserDetails] = useState({});
   const { username } = useParams();
   const [articles, setArticles] = useState([]);
+
   console.log(articles);
   useEffect(() => {
     getUserByUsername(username).then(setUserDetails);
