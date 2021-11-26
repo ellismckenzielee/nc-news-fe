@@ -2,21 +2,14 @@ import "./styles/CreateArticle.css";
 import { UserContext } from "../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Navigate } from "react-router";
-import { getTopics, postArticle } from "../utils/api";
+import { postArticle } from "../utils/api";
 import { handleCreateArticleBody, handleCreateArticleTitle } from "../utils/utils";
+import useCreateArticle from "../hooks/useCreateArticle";
 
 const CreateArticle = () => {
   const { loggedIn, user } = useContext(UserContext);
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [topics, setTopics] = useState([]);
-  const [topic, setTopic] = useState("coding");
   const navigate = useNavigate();
-  const [titleError, setTitleError] = useState("");
-  const [bodyError, setBodyError] = useState("");
-  useEffect(() => {
-    getTopics().then(setTopics);
-  }, []);
+  const [title, setTitle, body, setBody, topics, topic, setTopic, titleError, setTitleError, bodyError, setBodyError] = useCreateArticle;
 
   if (loggedIn) {
     return (
