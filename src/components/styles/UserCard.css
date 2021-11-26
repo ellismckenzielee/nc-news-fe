@@ -14,10 +14,6 @@
 .usercard-container > * {
   padding: 0.2em;
 }
-.usercard-profile-photo {
-  height: 200px;
-  margin: 0 auto;
-}
 
 .usercard-titles {
   margin: 0 auto;
@@ -32,24 +28,14 @@
   display: inline-block;
 }
 
-.usercard-button {
-  background-color: #f4f4f8;
-  border: 1px solid black;
-  color: black;
-  padding: 0.8em;
-  border-radius: 5px;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-.usercard-button:hover {
-  cursor: pointer;
-  background-color: #fed766;
-}
-
 .usercard-name {
   color: #fed766;
   font-weight: 900;
+}
+
+.usercard-profile-photo {
+  height: 200px;
+  margin: 0 auto;
 }
 
 .user-image-container {
