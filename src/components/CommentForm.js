@@ -8,6 +8,7 @@ const CommentForm = ({ article_id, setComments }) => {
   const { user } = useContext(UserContext);
   const [commentBody, setCommentBody] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   return (
     <div className="CommentForm">
       <section className="article-comments-form-container">
@@ -19,6 +20,8 @@ const CommentForm = ({ article_id, setComments }) => {
               if (result === "success") {
                 postComment({ username: user, body: commentBody }, article_id).then((article) => {
                   setError("");
+                  setCommentBody("");
+                  setSuccess("Your comment has been successfully posted!");
                   setComments((prev) => {
                     return [...prev, article];
                   });
@@ -41,6 +44,7 @@ const CommentForm = ({ article_id, setComments }) => {
           ></input>
           <p className="comment-form-error-message"> {error} </p>
           <button className="article-comment-submit-button">Submit Comment </button>
+          <p className="comment-form-success-message"> {success}</p>
         </form>
       </section>
     </div>
