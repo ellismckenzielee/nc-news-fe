@@ -33,6 +33,7 @@ const Articles = () => {
         {isLoading && <p> We are currently getting your articles </p>}
         {isError && <p> Oops! Something has gone wrong </p>}
         <div className="page-buttons">{paginationButtons}</div>
+        <p className="page-number">Page {pageNum ? pageNum : 0}</p>
       </main>
     </div>
   );
