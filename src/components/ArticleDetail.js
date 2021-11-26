@@ -49,6 +49,7 @@ const ArticleDetail = () => {
         {!hasVoted && !isAuthor && loggedIn && (
           <div className="article-vote-container">
             <button
+              className="article-detail-vote-up"
               onClick={() => {
                 setVoteIncrement((prev) => prev + 1);
                 patchArticle(1, article_id);
@@ -58,6 +59,7 @@ const ArticleDetail = () => {
               Vote Up
             </button>{" "}
             <button
+              className="article-detail-vote-down"
               onClick={() => {
                 setVoteIncrement((prev) => prev + -1);
                 patchArticle(-1, article_id);
@@ -71,6 +73,7 @@ const ArticleDetail = () => {
         <p className="article-detail-body">{article.body} </p>
         {!isAuthor && (
           <button
+            className="article-detail-view-author"
             onClick={() => {
               navigate(`/users/${article.author}`);
             }}

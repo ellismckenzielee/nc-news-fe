@@ -3,13 +3,13 @@
   padding: 15px;
 }
 
-.NavBar > button {
+.NavBar > .navbar-button {
   background-color: #f4f4f8;
   border: none;
   margin: 0.2em;
 }
 
-.NavBar > button:hover {
+.NavBar > .navbar-button:hover {
   font-weight: 1000;
   cursor: pointer;
 }

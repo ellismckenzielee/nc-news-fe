@@ -46,3 +46,18 @@
 .article-detail-comments-header {
   font-family: "Roboto Mono", monospace;
 }
+
+button {
+  background-color: #f4f4f8;
+  border: 1px solid black;
+  color: black;
+  padding: 0.8em;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #fed766;
+}
