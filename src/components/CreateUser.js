@@ -4,15 +4,12 @@ import { useNavigate } from "react-router";
 import { handleCreateUserFormSubmission } from "../utils/utils";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-import useErrorMessages from "../hooks/useErrorMessages";
+import useCreateUser from "../hooks/useCreateUser";
 
 const CreateUser = () => {
   const { setUser } = useContext(UserContext);
-  const [username, setUsername] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [name, setName] = useState("");
-  const [previewAvatar, setPreviewAvatar] = useState("");
-  const [errorMessage, setErrorMessage] = useErrorMessages();
+  const [username, setUsername, avatar, setAvatar, name, setName, previewAvatar, setPreviewAvatar] = useCreateUser();
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   return (
     <div className="CreateUser">
@@ -81,7 +78,7 @@ const CreateUser = () => {
         <p> Already Have an Account? </p>
         <button
           onClick={() => {
-            navigate("/users/login");
+            navigate("/login");
           }}
         >
           Sign In
