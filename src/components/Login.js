@@ -4,12 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { handleLoginForm } from "../utils/utils";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-import useErrorMessages from "../hooks/useErrorMessages";
-
 const Login = () => {
   const [username, setUsername] = useState("");
   const { setUser } = useContext(UserContext);
-  const [errorMessage, setErrorMessage] = useErrorMessages();
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   return (
     <div className="Login">
