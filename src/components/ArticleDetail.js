@@ -103,7 +103,7 @@ const ArticleDetail = () => {
       </section>
       {!loggedIn && (
         <p>
-          Please <Link to="/users/login">login</Link> to post a comment!{" "}
+          Please <Link to="/login">login</Link> to post a comment!{" "}
         </p>
       )}
       {loggedIn && <CommentForm article_id={article_id} setComments={setComments} />}

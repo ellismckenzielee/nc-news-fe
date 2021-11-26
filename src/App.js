@@ -27,7 +27,7 @@ function App() {
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/create" element={<CreateArticle />} />
           <Route path="/articles/:article_id" element={<ArticleDetail />} />
-          <Route path="/users/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/users/create" element={<CreateUser />} />
           <Route path="/users/:username" element={<UserDetail />} />
           <Route path="/users" element={<Users />} />

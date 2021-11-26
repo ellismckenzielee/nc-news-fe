@@ -10,11 +10,11 @@ const Users = () => {
   return (
     <div className="Users">
       <h2> Users </h2>
-      <div class="user-card-container">
+      <article class="user-card-container">
         {users.map((user) => {
           return <UserCard key={user.username} user={user} />;
         })}
-      </div>
+      </article>
     </div>
   );
 };

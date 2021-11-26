@@ -8,3 +8,12 @@
   border: none;
   margin: 0.2em;
 }
+
+.NavBar > button:hover {
+  font-weight: 1000;
+  cursor: pointer;
+}
+
+.active-nav-button {
+  color: #fed766;
+}
