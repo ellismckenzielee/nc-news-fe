@@ -12,6 +12,7 @@ const UserCard = ({ user }) => {
           <h3 className="usercard-name"> {user.name} </h3>
           <p> Popularity: {user.total_votes} </p>
           <button
+            className="usercard-button"
             onClick={() => {
               navigate(`/users/${user.username}`);
             }}
@@ -20,7 +21,9 @@ const UserCard = ({ user }) => {
             View Profile{" "}
           </button>
         </div>
-        <img className="usercard-profile-photo" src={user.avatar_url} />
+        <figure className="user-image-container">
+          <img className="usercard-profile-photo" src={user.avatar_url} />
+        </figure>
       </div>
     </div>
   );

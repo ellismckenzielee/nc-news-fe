@@ -1,7 +1,7 @@
 .UserCard {
   border: 1px solid black;
+  padding: 5px;
 }
-
 .usercard-container {
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@
   overflow: hidden;
   grid-template-columns: repeat(auto-fill, minmax(200px, 700px));
   width: 350px;
-  height: 400px;
+  height: 450px;
 }
 .usercard-container > * {
   padding: 0.2em;
@@ -26,5 +26,38 @@
 
 .usercard-username {
   font-weight: 900;
-  background-color: ;
+  color: #009fb7;
+  background-color: #e6e6ea;
+  margin: 20px 20px 0px 20px;
+  display: inline-block;
+}
+
+.usercard-button {
+  background-color: #f4f4f8;
+  border: 1px solid black;
+  color: black;
+  padding: 0.8em;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.usercard-button:hover {
+  cursor: pointer;
+  background-color: #fed766;
+}
+
+.usercard-name {
+  color: #fed766;
+  font-weight: 900;
+}
+
+.user-image-container {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid;
 }
