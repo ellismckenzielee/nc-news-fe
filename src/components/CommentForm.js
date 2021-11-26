@@ -33,7 +33,7 @@ const CommentForm = ({ article_id, setComments }) => {
           }}
           className="article-detail-comments-form"
         >
-          <label htmlFor="article-comment-label">Content (Between 10 and 100 chaarcters)</label>
+          <label htmlFor="article-comment-label">Content (Between 10 and 100 characters)</label>
           <input
             onChange={(e) => {
               setCommentBody(e.target.value);
