@@ -1,5 +1,6 @@
 .article-detail-container {
-  width: 60%;
+  width: 90%;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -38,6 +39,10 @@
   min-width: 500px;
   margin: 0 auto;
 }
+.article-detail-body {
+  min-width: 350px;
+  margin: 0 auto;
+}
 
 .article-detail-comments-form > * {
   margin: 0.2em;
@@ -45,6 +50,10 @@
 
 .article-detail-comments-header {
   font-family: "Roboto Mono", monospace;
+}
+
+.article-detail-view-author {
+  margin-top: 20px;
 }
 
 button {
