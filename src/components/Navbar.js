@@ -8,6 +8,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const toggleLoginButtonText = loggedIn ? "Logout" : "Login";
   const { pathname } = useLocation();
+  const userPath = pathname.split("/").slice(-1)[0];
+  console.log(userPath);
   console.log(pathname);
   const viewArticles = (
     <button
@@ -37,7 +39,7 @@ const Navbar = () => {
 
   const viewProfile = (
     <button
-      className={`navbar-button ${/users\/[\w]*/.test(pathname) ? "active-nav-button" : ""}`}
+      className={`navbar-button ${/users\/[\w]*/.test(pathname) && userPath === user ? "active-nav-button" : ""}`}
       onClick={() => {
         if (!loggedIn) {
           navigate("/login");
