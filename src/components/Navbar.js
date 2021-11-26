@@ -9,8 +9,6 @@ const Navbar = () => {
   const toggleLoginButtonText = loggedIn ? "Logout" : "Login";
   const { pathname } = useLocation();
   const userPath = pathname.split("/").slice(-1)[0];
-  console.log(userPath);
-  console.log(pathname);
   const viewArticles = (
     <button
       className={`navbar-button ${pathname === "/articles" ? "active-nav-button" : ""}`}
@@ -79,7 +77,7 @@ const Navbar = () => {
     </button>
   );
   return (
-    <div className="NavBar">
+    <div className="navbar">
       {viewArticles}
       {viewUsers}
       {createArticle}

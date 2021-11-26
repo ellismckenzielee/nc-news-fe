@@ -1,17 +1,17 @@
-.NavBar {
+.navbar {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 
   padding: 15px;
 }
 
-.NavBar > .navbar-button {
+.navbar > .navbar-button {
   background-color: #f4f4f8;
   border: none;
   margin: 0.2em;
 }
 
-.NavBar > .navbar-button:hover {
+.navbar > .navbar-button:hover {
   font-weight: 1000;
   cursor: pointer;
 }
