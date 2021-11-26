@@ -7,10 +7,13 @@ const ArticleCard = ({ article }) => {
   return (
     <div className="ArticleCard">
       <article className="article-container">
-        <h3 className="article-card-header"> {title} </h3>
-        <h4 className="article-card-author">
-          <Link to={`/users/${author}`}>{author}</Link>
-        </h4>
+        <div className="article-main-info">
+          <h3 className="article-card-header"> {title} </h3>
+          <h4 className="article-card-author">
+            <Link to={`/users/${author}`}>{author}</Link>
+          </h4>
+        </div>
+
         <div className="article-card-meta-info">
           <h5>{formatDate(created_at)}</h5>
           <h5>{topic}</h5>
