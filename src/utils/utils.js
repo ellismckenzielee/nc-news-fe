@@ -9,7 +9,6 @@ export const login = async (username) => {
   /* Get request to API simulates login */
   try {
     const response = await ncNewsApi.get(`users/${username}`);
-    console.log(response);
     return response.status;
   } catch (err) {
     return err.response.status;
@@ -26,7 +25,6 @@ export const createPaginationButtons = (total, limit, setSearchParams) => {
       <button
         key={i}
         onClick={() => {
-          console.log(true);
           setSearchParams({ p: i });
         }}
       >
@@ -61,15 +59,12 @@ export const handleCreateUserFormSubmission = async (username, avatar_url, name)
     const response = await postUser(username, name, avatar_url);
     return response.data.user;
   } catch (err) {
-    console.log("!!!!!!!!!");
     return { err: "username already exists" };
   }
 };
 
 export const formatDate = (date) => {
-  console.log("DATE", date);
   date = new Date(Date.parse(date));
-  console.log(date);
   return date.toISOString().split("T")[0];
 };
 

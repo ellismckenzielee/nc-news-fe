@@ -5,7 +5,6 @@ const useCreateArticle = () => {
   const [body, setBody] = useState("");
   const [topics, setTopics] = useState([]);
   const [topic, setTopic] = useState("coding");
-
   const [titleError, setTitleError] = useState("");
   const [bodyError, setBodyError] = useState("");
   useEffect(() => {

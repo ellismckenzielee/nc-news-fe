@@ -9,7 +9,7 @@ import useCreateArticle from "../hooks/useCreateArticle";
 const CreateArticle = () => {
   const { loggedIn, user } = useContext(UserContext);
   const navigate = useNavigate();
-  const [title, setTitle, body, setBody, topics, topic, setTopic, titleError, setTitleError, bodyError, setBodyError] = useCreateArticle;
+  const [title, setTitle, body, setBody, topics, topic, setTopic, titleError, setTitleError, bodyError, setBodyError] = useCreateArticle();
 
   if (loggedIn) {
     return (
