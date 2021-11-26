@@ -1,0 +1,36 @@
+.UserSelector {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.user-selector-form-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8em;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+form {
+  padding: 20px;
+}
+
+select {
+  padding: 0.8em;
+}
+
+button {
+  padding: 0.8em;
+}
+
+.user-selector-form-fieldset {
+  border: none;
+  width: 32%;
+  display: flex;
+  min-width: 350px;
+  flex-direction: column;
+}
+
+.user-selector-form-fieldset > label {
+  margin-bottom: 0.3em;
+}
