@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   width: 90%;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0px auto 20px auto;
   gap: 20px;
 }
 

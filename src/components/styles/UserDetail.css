@@ -10,10 +10,8 @@
 }
 
 .user-details-image {
-  border: 1px solid black;
-  width: 350px;
+  width: 100%;
   margin: 0 auto;
-  border-radius: 50%;
 }
 
 .articles-container {
@@ -23,4 +21,13 @@
   gap: 20px;
   width: 100%;
   justify-content: center;
+}
+
+.user-details-image-container {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid black;
+  margin: 0 auto;
 }
