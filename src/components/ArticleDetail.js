@@ -7,6 +7,7 @@ import { patchArticle } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
 import useVotes from "../hooks/useVotes";
 import CommentForm from "./CommentForm";
+import { formatDate } from "../utils/utils";
 
 const ArticleDetail = () => {
   const { article_id } = useParams();
@@ -17,11 +18,18 @@ const ArticleDetail = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const numberOfPages = Math.ceil((comments.length ? comments[0].total_count : 0) / 5);
   const isAuthor = user === article.author;
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
-    getArticleById(article_id).then(setArticle);
+    setIsLoading(true);
+    getArticleById(article_id)
+      .then(setArticle)
+      .then(() => {
+        setIsLoading(false);
+      });
     getCommentsByArticleId(article_id, pageNumber).then(setComments);
   }, [article_id]);
+  if (isLoading) return <p>Loading...</p>;
   return (
     <div className="ArticleDetail">
       <section className="article-detail-container">
@@ -38,12 +46,18 @@ const ArticleDetail = () => {
             Delete Article{" "}
           </button>
         )}
-        <h3 className="article-detail-author"> {article.author} </h3>
-        <h3 className="article-detail-created-at"> {article.created_at} </h3>
-        <p className="article-detail-topic"> {article.topic} </p>
-        <p className="article-detail-comment-count"> Comment Count: {article.comment_count} </p>
-        <p className="article-detail-votes"> Votes: {article.votes + voteIncrement} </p>
-        {!hasVoted && !isAuthor && (
+        <div className="article-detail-information-container">
+          <h3 className="aricle-detail-username-date">
+            {" "}
+            {article.author} | {formatDate(article.created_at)}{" "}
+          </h3>
+
+          <p className="article-detail-topic"> {article.topic} </p>
+          <p className="article-detail-comment-count"> Comment Count: {article.comment_count} </p>
+          <p className="article-detail-votes"> Votes: {article.votes + voteIncrement} </p>
+        </div>
+
+        {!hasVoted && !isAuthor && loggedIn && (
           <div className="article-vote-container">
             <button
               onClick={() => {

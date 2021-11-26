@@ -31,6 +31,6 @@ button {
   flex-direction: column;
 }
 
-.article-selector-form-fieldset > * {
-  margin: 0.2em;
+.article-selector-form-fieldset > label {
+  margin-bottom: 0.3em;
 }

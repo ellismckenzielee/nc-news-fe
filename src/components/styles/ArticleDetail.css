@@ -5,6 +5,26 @@
 
 .article-detail-title {
   font-family: "Roboto Mono", monospace;
+  font-weight: 1200;
+  background-color: #fed766;
+  margin-bottom: 0px;
+}
+
+.article-detail-information-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0px;
+}
+.aricle-detail-username-date {
+  min-width: 350px;
+}
+.article-detail-topic {
+  background-color: #009fb7;
+  font-weight: 600;
+  color: #f4f4f8;
 }
 
 .article-detail-comments-form {

@@ -67,6 +67,8 @@ export const handleCreateUserFormSubmission = async (username, avatar_url, name)
 };
 
 export const formatDate = (date) => {
+  console.log("DATE", date);
   date = new Date(Date.parse(date));
+  console.log(date);
   return date.toISOString().split("T")[0];
 };
