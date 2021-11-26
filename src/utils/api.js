@@ -79,7 +79,12 @@ export const deleteArticleById = async (article_id) => {
   const response = await ncNewsApi.delete(`/articles/${article_id}`);
 };
 
-export const getUsers = async () => {
-  const response = await ncNewsApi.get("/users");
+export const getUsers = async (sort_by, order) => {
+  const params = {
+    sort_by,
+    order,
+  };
+  console.log("!!!!", params);
+  const response = await ncNewsApi.get("/users", { params });
   return response.data.users;
 };
