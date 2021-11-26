@@ -1,14 +1,8 @@
-.Header {
-  border: 1px solid red;
-  background-color: #f4f4f8;
+.header-image {
+  height: 80px;
 }
 
-.main-header {
-  color: #009fb7;
-  font-family: "Roboto Mono", monospace;
-}
-
-.main-header {
+. .main-header {
   text-decoration: none;
 }
 
