@@ -40,8 +40,10 @@
   margin: 0 auto;
 }
 .article-detail-body {
-  min-width: 280px;
+  min-width: 320px;
   margin: 0 auto;
+  max-width: 320px;
+  background-color: red;
 }
 
 .article-detail-comments-form > * {
