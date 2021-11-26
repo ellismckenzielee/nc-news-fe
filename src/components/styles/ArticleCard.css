@@ -4,6 +4,24 @@
   max-width: 350px;
 }
 
+.article-card-header {
+  color: #009fb7;
+  background-color: #e6e6ea;
+}
+
+.article-card-author > * {
+  color: #fed766;
+  font-weight: 900;
+}
+
+.article-card-meta-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
 .article-card-button {
   background-color: #d7263d;
   color: white;

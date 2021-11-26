@@ -1,4 +1,10 @@
-.Navbar {
+.NavBar {
   border: 1px solid green;
   padding: 15px;
+}
+
+.NavBar > button {
+  background-color: #f4f4f8;
+  border: none;
+  margin: 0.2em;
 }

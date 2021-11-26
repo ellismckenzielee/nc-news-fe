@@ -1,17 +1,21 @@
 import "./styles/ArticleCard.css";
 import { Link } from "react-router-dom";
+import { formatDate } from "../utils/utils";
 const ArticleCard = ({ article }) => {
   const { article_id, title, author, created_at, topic, comment_count, votes } = article;
 
   return (
     <div className="ArticleCard">
       <article className="article-container">
-        <h3> {title} </h3>
-        <h5>
+        <h3 className="article-card-header"> {title} </h3>
+        <h4 className="article-card-author">
           <Link to={`/users/${author}`}>{author}</Link>
-        </h5>
-        <h6>{created_at}</h6>
-        <span>{topic}</span>
+        </h4>
+        <div className="article-card-meta-info">
+          <h5>{formatDate(created_at)}</h5>
+          <h5>{topic}</h5>
+        </div>
+
         <p> Comment Count: {comment_count}</p>
         <p> Votes: {votes}</p>
         <Link className="article-card-button" to={`/articles/${article_id}`}>

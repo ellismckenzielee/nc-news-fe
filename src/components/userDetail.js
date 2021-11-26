@@ -13,6 +13,7 @@ const UserDetail = () => {
     getUserByUsername(username).then(setUserDetails);
     getArticlesByUsername(username).then(setArticles);
   }, [username]);
+
   return (
     <div className="UserDetail">
       <section className="user-details-container">

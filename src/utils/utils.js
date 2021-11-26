@@ -65,3 +65,8 @@ export const handleCreateUserFormSubmission = async (username, avatar_url, name)
     return { err: "username already exists" };
   }
 };
+
+export const formatDate = (date) => {
+  date = new Date(Date.parse(date));
+  return date.toISOString().split("T")[0];
+};

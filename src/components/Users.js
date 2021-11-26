@@ -9,10 +9,12 @@ const Users = () => {
   }, []);
   return (
     <div className="Users">
-      <h2> Users Page </h2>
-      {users.map((user) => {
-        return <UserCard key={user.username} user={user} />;
-      })}
+      <h2> Users </h2>
+      <div class="user-card-container">
+        {users.map((user) => {
+          return <UserCard key={user.username} user={user} />;
+        })}
+      </div>
     </div>
   );
 };

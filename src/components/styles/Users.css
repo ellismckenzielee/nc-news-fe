@@ -1,0 +1,9 @@
+.user-card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 20px;
+}

@@ -10,8 +10,3 @@
   grid-template-columns: 100vw;
   grid-template-rows: min-content min-content 1fr;
 }
-
-.main-header {
-  color: #0197f6;
-  font-family: "Roboto Mono", monospace;
-}
