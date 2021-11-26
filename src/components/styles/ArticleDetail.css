@@ -1,5 +1,5 @@
 .article-detail-container {
-  width: 90%;
+  width: 85%;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -29,7 +29,6 @@
 .article-detail-topic {
   background-color: #009fb7;
   font-weight: 600;
-  color: #f4f4f8;
 }
 
 .article-detail-comments-form {
@@ -40,9 +39,9 @@
   margin: 0 auto;
 }
 .article-detail-body {
-  min-width: 320px;
+  min-width: 300px;
   margin: 0 auto;
-  background-color: red;
+  background-color: #f4f4f8;
 }
 
 .article-detail-comments-form > * {
