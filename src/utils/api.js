@@ -5,7 +5,6 @@ const ncNewsApi = axios.create({
 });
 
 export const getArticles = async (topic, sort_by, order, p, limit = 6) => {
-  console.log(topic, order, sort_by);
   const params = {
     topic,
     sort_by,
@@ -37,7 +36,6 @@ export const getTopics = async () => {
 };
 
 export const postUser = async (username, avatar_url, name) => {
-  console.log(username, avatar_url, name);
   const response = await ncNewsApi.post("/users", { username, avatar_url, name });
   return response.data.user;
 };
@@ -58,7 +56,6 @@ export const postArticle = async (article) => {
 };
 
 export const postComment = async (comment, article_id) => {
-  console.log(comment, article_id);
   const response = await ncNewsApi.post(`/articles/${article_id}/comments`, comment);
   return response.data.comment;
 };

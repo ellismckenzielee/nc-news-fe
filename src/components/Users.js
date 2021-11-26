@@ -17,7 +17,7 @@ const Users = () => {
   return (
     <div className="Users">
       <h2 className="users-title"> Users </h2>
-      <article class="user-card-container">
+      <article className="user-card-container">
         {users.map((user) => {
           return <UserCard key={user.username} user={user} />;
         })}

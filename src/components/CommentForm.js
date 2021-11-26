@@ -8,7 +8,6 @@ const CommentForm = ({ article_id, setComments }) => {
   const { user } = useContext(UserContext);
   const [commentBody, setCommentBody] = useState("");
   const [error, setError] = useState("");
-
   return (
     <div className="CommentForm">
       <section className="article-comments-form-container">
@@ -37,10 +36,10 @@ const CommentForm = ({ article_id, setComments }) => {
               setCommentBody(e.target.value);
             }}
             type="text"
-            id="article-comment-body"
+            id="article-comment-label"
             value={commentBody}
           ></input>
-          <p> {error} </p>
+          <p className="comment-form-error-message"> {error} </p>
           <button className="article-comment-submit-button">Submit Comment </button>
         </form>
       </section>

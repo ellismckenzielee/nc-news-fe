@@ -1,34 +1,21 @@
 import "./styles/ArticleDetail.css";
-import { useParams, useNavigate, useSearchParams, Link } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
-import { getArticleById, getCommentsByArticleId, deleteArticleById } from "../utils/api";
-import CommentCard from "./CommentCard";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { useContext } from "react";
+import { deleteArticleById } from "../utils/api";
 import { patchArticle } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
 import useVotes from "../hooks/useVotes";
 import CommentForm from "./CommentForm";
 import { formatDate } from "../utils/utils";
 import CommentsBlock from "./CommentsBlock";
+import useArticleDetail from "../hooks/useArticleDetail";
 
 const ArticleDetail = () => {
-  const { article_id } = useParams();
   const { user, loggedIn } = useContext(UserContext);
-  const [article, setArticle] = useState({});
-  const [voteIncrement, setVoteIncrement, hasVoted, setHasVoted] = useVotes();
-  const isAuthor = user === article.author;
-  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const [showComments, setShowComments] = useState(false);
-  const [comments, setComments] = useState([]);
-  console.log(showComments);
-  useEffect(() => {
-    setIsLoading(true);
-    getArticleById(article_id)
-      .then(setArticle)
-      .then(() => {
-        setIsLoading(false);
-      });
-  }, [article_id]);
+  const { article_id } = useParams();
+  const [voteIncrement, setVoteIncrement, hasVoted, setHasVoted] = useVotes();
+  const [article, isAuthor, isLoading, showComments, setShowComments, comments, setComments] = useArticleDetail(user, article_id);
   if (isLoading) return <p>Loading...</p>;
   return (
     <div className="ArticleDetail">

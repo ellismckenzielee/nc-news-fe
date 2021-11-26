@@ -16,7 +16,6 @@ import ResourceNotFound from "./components/ResourceNotFound";
 
 function App() {
   const user = useContext(UserContext);
-  console.log("USER", user);
   return (
     <BrowserRouter>
       <div className="App">
