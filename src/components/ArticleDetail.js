@@ -8,18 +8,19 @@ import { UserContext } from "../contexts/UserContext";
 import useVotes from "../hooks/useVotes";
 import CommentForm from "./CommentForm";
 import { formatDate } from "../utils/utils";
+import CommentsBlock from "./CommentsBlock";
 
 const ArticleDetail = () => {
   const { article_id } = useParams();
   const { user, loggedIn } = useContext(UserContext);
   const [article, setArticle] = useState({});
-  const [comments, setComments] = useState([]);
   const [voteIncrement, setVoteIncrement, hasVoted, setHasVoted] = useVotes();
-  const [pageNumber, setPageNumber] = useState(0);
-  const numberOfPages = Math.ceil((comments.length ? comments[0].total_count : 0) / 5);
   const isAuthor = user === article.author;
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const [showComments, setShowComments] = useState(false);
+  const [comments, setComments] = useState([]);
+  console.log(showComments);
   useEffect(() => {
     setIsLoading(true);
     getArticleById(article_id)
@@ -27,25 +28,13 @@ const ArticleDetail = () => {
       .then(() => {
         setIsLoading(false);
       });
-    getCommentsByArticleId(article_id, pageNumber).then(setComments);
   }, [article_id]);
   if (isLoading) return <p>Loading...</p>;
   return (
     <div className="ArticleDetail">
       <section className="article-detail-container">
         <h2 className="article-detail-title"> {article.title}</h2>
-        {isAuthor && (
-          <button
-            onClick={() => {
-              deleteArticleById(article_id).then(() => {
-                navigate("/");
-              });
-            }}
-          >
-            {" "}
-            Delete Article{" "}
-          </button>
-        )}
+
         <div className="article-detail-information-container">
           <h3 className="aricle-detail-username-date">
             {" "}
@@ -89,31 +78,34 @@ const ArticleDetail = () => {
             Visit Author's Page
           </button>
         )}
-      </section>
-      <section className="article-comments-container">
-        <h2 className="article-detail-comments-header"> Comments </h2>
-        {comments.map((comment) => {
-          return <CommentCard setComments={setComments} key={comment.comment_id} comment={comment}></CommentCard>;
-        })}
-        {pageNumber + 1 < numberOfPages && (
+        {isAuthor && (
           <button
+            className="article-detail-delete-article"
             onClick={() => {
-              const nextPage = pageNumber + 1;
-              getCommentsByArticleId(article_id, nextPage)
-                .then((response) => {
-                  setComments((prev) => {
-                    return [...prev, ...response];
-                  });
-                })
-                .then(() => {
-                  setPageNumber((prev) => prev + 1);
-                });
+              deleteArticleById(article_id).then(() => {
+                navigate("/");
+              });
             }}
           >
             {" "}
-            More Comments...
+            Delete Article{" "}
           </button>
         )}
+      </section>
+      <section className="article-comments-container">
+        <h2 className="article-detail-comments-header"> Comments </h2>
+        {!showComments && (
+          <button
+            onClick={() => {
+              setShowComments(true);
+            }}
+            className="article-detail-show-comments"
+          >
+            {" "}
+            Show Comments{" "}
+          </button>
+        )}
+        {showComments && <CommentsBlock article_id={article_id} setComments={setComments} comments={comments} />}
       </section>
       {!loggedIn && (
         <p>

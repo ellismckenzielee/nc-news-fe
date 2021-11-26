@@ -10,6 +10,10 @@
   margin-bottom: 0px;
 }
 
+.article-detail-delete-article {
+  background-color: #fe4a49;
+  margin-top: 20px;
+}
 .article-detail-information-container {
   display: flex;
   justify-content: space-around;
