@@ -27,7 +27,7 @@ button {
   border: none;
   width: 32%;
   display: flex;
-  min-width: 460px;
+  min-width: 350px;
   flex-direction: column;
 }
 

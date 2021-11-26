@@ -1,6 +1,6 @@
 .CommentCard {
   width: 50%;
-  min-width: 500px;
+  min-width: 350px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
