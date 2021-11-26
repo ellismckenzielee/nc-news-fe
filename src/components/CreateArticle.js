@@ -2,8 +2,8 @@ import "./styles/CreateArticle.css";
 import { UserContext } from "../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Navigate } from "react-router";
-import { getTopics } from "../utils/api";
-import { postArticle } from "../utils/api";
+import { getTopics, postArticle } from "../utils/api";
+import { handleCreateArticleBody, handleCreateArticleTitle } from "../utils/utils";
 
 const CreateArticle = () => {
   const { loggedIn, user } = useContext(UserContext);
@@ -12,7 +12,8 @@ const CreateArticle = () => {
   const [topics, setTopics] = useState([]);
   const [topic, setTopic] = useState("coding");
   const navigate = useNavigate();
-
+  const [titleError, setTitleError] = useState("");
+  const [bodyError, setBodyError] = useState("");
   useEffect(() => {
     getTopics().then(setTopics);
   }, []);
@@ -24,9 +25,16 @@ const CreateArticle = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            postArticle({ body, title, author: user, topic }).then((article) => {
-              navigate(`/articles/${article.article_id}`);
-            });
+            const bodyErr = handleCreateArticleBody(body);
+            const titleErr = handleCreateArticleTitle(title);
+            if (titleErr === "" && bodyErr === "") {
+              postArticle({ body, title, author: user, topic }).then((article) => {
+                navigate(`/articles/${article.article_id}`);
+              });
+            } else {
+              setBodyError(bodyErr);
+              setTitleError(titleErr);
+            }
           }}
           className="create-article-form"
         >
@@ -39,7 +47,8 @@ const CreateArticle = () => {
             id="article-title"
             value={title}
           ></input>
-          <label htmlFor="body">Content</label>
+          <p className="create-article-form-warning">{titleError}</p>
+          <label htmlFor="body">Content (> 20 characters)</label>
           <input
             onChange={(e) => {
               setBody(e.target.value);
@@ -48,7 +57,12 @@ const CreateArticle = () => {
             id="body"
             value={body}
           ></input>
+          <p className="create-article-form-warning">{bodyError}</p>
+
+          <label htmlFor="select-category">Category</label>
+
           <select
+            id="select-category"
             onChange={(e) => {
               setTopic(e.target.value);
             }}

@@ -72,3 +72,15 @@ export const formatDate = (date) => {
   console.log(date);
   return date.toISOString().split("T")[0];
 };
+
+export const handleCreateArticleTitle = (title) => {
+  if (title === "") return "Please enter a title";
+  return "";
+};
+
+export const handleCreateArticleBody = (body) => {
+  if (body.length < 20) return "Please enter more than 20 characters";
+  return "";
+};
+
+export const handleCreateArticleSubmit = () => {};

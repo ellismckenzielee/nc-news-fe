@@ -13,3 +13,7 @@
 .create-article-form > * {
   margin: 0.2em;
 }
+
+.create-article-form-warning {
+  color: red;
+}
