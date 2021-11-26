@@ -2,7 +2,7 @@
 
 ## Available at:
 
-### https://61a117eeb5f8fa4f0302bc37--sleepy-tereshkova-00a5b3.netlify.app/articles
+### https://sleepy-tereshkova-00a5b3.netlify.app/
 
 ## Project Summary
 
