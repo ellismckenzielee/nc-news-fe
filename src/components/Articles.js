@@ -24,6 +24,7 @@ const Articles = () => {
   }, [topic, sort_by, order, pageNum]);
   return (
     <div className="Articles">
+      <h2 className="articles-title"> Articles </h2>
       <ArticleSelector setSearchParams={setSearchParams} />
       <main className="articles-container">
         {!isLoading &&
