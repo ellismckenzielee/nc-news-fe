@@ -35,3 +35,8 @@
   margin: 0 auto;
   position: relative;
 }
+
+.delete-user-profile-button {
+  background-color: red;
+  color: white;
+}

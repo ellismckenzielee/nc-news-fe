@@ -37,6 +37,7 @@ export const getTopics = async () => {
 
 export const postUser = async (username, avatar_url, name) => {
   const response = await ncNewsApi.post("/users", { username, avatar_url, name });
+  console.log(response);
   return response.data.user;
 };
 
@@ -87,4 +88,13 @@ export const getUsers = async (sort_by, order) => {
   console.log("!!!!", params);
   const response = await ncNewsApi.get("/users", { params });
   return response.data.users;
+};
+
+export const deleteUserByUsername = async (username) => {
+  try {
+    console.log(`/users/${username}`);
+    const response = await ncNewsApi.delete(`/users/${username}`);
+  } catch (err) {
+    console.dir("ERR", err);
+  }
 };

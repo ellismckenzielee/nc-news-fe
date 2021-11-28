@@ -23,6 +23,7 @@ const CreateUser = () => {
                 setErrorMessage(result.err);
               } else {
                 setUser(username);
+                navigate(`/users/${username}`);
               }
             });
           }}

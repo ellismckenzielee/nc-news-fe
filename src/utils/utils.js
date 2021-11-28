@@ -56,9 +56,10 @@ export const handlePostCommentForm = async (username, body) => {
 
 export const handleCreateUserFormSubmission = async (username, avatar_url, name) => {
   try {
-    const response = await postUser(username, name, avatar_url);
-    return response.data.user;
+    const response = await postUser(username, avatar_url, name);
+    return response;
   } catch (err) {
+    console.log(err);
     return { err: "username already exists" };
   }
 };
