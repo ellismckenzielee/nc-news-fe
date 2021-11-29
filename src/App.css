@@ -2,11 +2,11 @@
 
 .App {
   width: 100vw;
-  min-width: 300px;
   height: 100vh;
   text-align: center;
-  margin: 0 auto;
+  overflow-x: hidden;
   display: grid;
+  max-width: 100%;
   grid-template-columns: 100vw;
   grid-template-rows: min-content min-content 1fr;
 }
