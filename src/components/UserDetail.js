@@ -32,6 +32,7 @@ const UserDetail = () => {
       </section>
       {username === user && !confirmDelete && (
         <button
+        className="delete-user-profile-button"
           onClick={() => {
             setConfirmDelete(true);
           }}
@@ -43,7 +44,7 @@ const UserDetail = () => {
         <>
           <p> Are you sure you want to delete? </p>
           <button
-            className="delete-user-profile-button"
+            
             onClick={() => {
               console.log("deleting", username);
               deleteUserByUsername(username).then(() => {
