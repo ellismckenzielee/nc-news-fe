@@ -1,6 +1,6 @@
 import "./styles/ArticleDetail.css";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { deleteArticleById } from "../utils/api";
 import { patchArticle } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
@@ -15,8 +15,12 @@ const ArticleDetail = () => {
   const navigate = useNavigate();
   const { article_id } = useParams();
   const [voteIncrement, setVoteIncrement, hasVoted, setHasVoted] = useVotes();
-  const [article, isAuthor, isLoading, showComments, setShowComments, comments, setComments] = useArticleDetail(user, article_id);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [article, isAuthor, isLoading, showComments, setShowComments, comments, setComments] = useArticleDetail(user, article_id, setIsError, setErrorMessage);
+  
   if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p> {errorMessage} </p>
   return (
     <div className="ArticleDetail">
       <section className="article-detail-container">

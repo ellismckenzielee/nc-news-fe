@@ -6,7 +6,8 @@
 
 ## Project Summary
 
-A news reader application built using React to interact with the NC-NEWS backend API.
+A news reader application built using React to interact with the NC-NEWS backend API (see link below).
+### https://github.com/ellismckenzielee/nc-news
 
 ## Installation Instructions
 
@@ -49,5 +50,6 @@ npm start
 ## Version Information
 
 React: 17.0.2
+Node: 14.17.6
 
 ## Additional Information
