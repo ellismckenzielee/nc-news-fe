@@ -10,6 +10,12 @@
   margin: 0 auto;
 }
 
+.create-article-form-text-area { 
+  width: 100%;
+  min-height: 200px;
+  overflow-y: scroll;
+  resize: none;
+}
 .create-article-form > * {
   margin: 0.2em;
 }

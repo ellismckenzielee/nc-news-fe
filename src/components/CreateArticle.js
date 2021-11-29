@@ -42,14 +42,15 @@ const CreateArticle = () => {
           ></input>
           <p className="create-article-form-warning">{titleError}</p>
           <label htmlFor="body">Content (> 20 characters)</label>
-          <input
+          <textarea
             onChange={(e) => {
               setBody(e.target.value);
             }}
-            type="text"
+            type="textarea"
             id="body"
             value={body}
-          ></input>
+            className='create-article-form-text-area'
+          ></textarea>
           <p className="create-article-form-warning">{bodyError}</p>
 
           <label htmlFor="select-category">Category</label>
