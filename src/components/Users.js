@@ -10,14 +10,21 @@ const Users = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const sort_by = searchParams.get("sort_by");
   const order = searchParams.get("order");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isError, setIsError] = useState(false);
   console.log(sort_by, order);
   useEffect(() => {
     setIsLoading(true);
     console.log("RELOAD");
     getUsers(sort_by, order)
-      .then(setUsers)
-      .then(() => {
+      .then((users) => {
+        setUsers(users);
         setIsLoading(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+        setIsError(true);
+        setErrorMessage("Internal Error");
       });
   }, [sort_by, order, searchParams]);
   return (
@@ -33,6 +40,7 @@ const Users = () => {
         </article>
       )}
       {isLoading && <p> Loading... </p>}
+      {isError && <p>{errorMessage}</p>}
     </div>
   );
 };

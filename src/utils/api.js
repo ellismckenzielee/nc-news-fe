@@ -17,9 +17,8 @@ export const getArticles = async (topic, sort_by, order, p, limit = 6) => {
 };
 
 export const getArticleById = async (article_id) => {
-    const response = await ncNewsApi.get(`/articles/${article_id}`);
+  const response = await ncNewsApi.get(`/articles/${article_id}`);
   return response.data.article;
-
 };
 
 export const getCommentsByArticleId = async (article_id, p, limit = 5) => {
@@ -69,7 +68,7 @@ export const deleteComment = async (comment_id) => {
 
 export const getUserByUsername = async (username) => {
   const response = await ncNewsApi.get(`/users/${username}`);
-  return response.data.user;
+  return response.data;
 };
 
 export const getArticlesByUsername = async (username) => {

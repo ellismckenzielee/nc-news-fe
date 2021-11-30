@@ -18,7 +18,7 @@ const CommentForm = ({ article_id, setComments }) => {
             e.preventDefault();
             handlePostCommentForm(user, commentBody).then((result) => {
               if (result === "success") {
-                postComment({ username: user, body: commentBody }, article_id).then((article) => {
+                postComment({ username: user.username, body: commentBody }, article_id).then((article) => {
                   setError("");
                   setCommentBody("");
                   setSuccess("Your comment has been successfully posted!");

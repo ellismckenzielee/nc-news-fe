@@ -37,12 +37,12 @@ const Navbar = () => {
 
   const viewProfile = (
     <button
-      className={`navbar-button ${/users\/[\w]*/.test(pathname) && userPath === user ? "active-nav-button" : ""}`}
+      className={`navbar-button ${/users\/[\w]*/.test(pathname) && userPath === user.username ? "active-nav-button" : ""}`}
       onClick={() => {
         if (!loggedIn) {
           navigate("/login");
         } else {
-          navigate(`/users/${user}`);
+          navigate(`/users/${user.username}`);
         }
       }}
     >

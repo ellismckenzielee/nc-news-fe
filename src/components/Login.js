@@ -15,12 +15,13 @@ const Login = () => {
         className="login-form"
         onSubmit={(e) => {
           e.preventDefault();
-          handleLoginForm(username).then((result) => {
-            if (result === "success") {
-              setUser(username);
+          handleLoginForm(username).then((response) => {
+            if (response.status === 200) {
+              console.log("RESPONSE", response.user);
+              setUser(response.user);
               navigate("/");
             } else {
-              setErrorMessage(result);
+              setErrorMessage(response.msg);
             }
           });
         }}

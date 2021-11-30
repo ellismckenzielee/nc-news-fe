@@ -21,7 +21,7 @@ const UserCard = ({ user }) => {
           </button>
         </div>
         <figure className="user-image-container">
-          <img className="usercard-profile-photo" src={user.avatar_url} />
+          <img className="usercard-profile-photo" src={user.avatar_url} alt={user.username} />
         </figure>
       </div>
     </div>

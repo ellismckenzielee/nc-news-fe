@@ -8,7 +8,7 @@ const CommentsBlock = ({ article_id, setComments, comments }) => {
 
   useEffect(() => {
     getCommentsByArticleId(article_id, pageNumber).then(setComments);
-  }, []);
+  }, [pageNumber, setComments, article_id]);
   return (
     <div className="CommentsBlock">
       {comments.map((comment) => {

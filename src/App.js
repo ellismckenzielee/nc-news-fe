@@ -8,14 +8,11 @@ import Users from "./components/Users";
 import { BrowserRouter, Routes, Navigate, Route } from "react-router-dom";
 
 import "./App.css";
-import { useContext, useState } from "react";
-import { UserContext } from "./contexts/UserContext";
 import Login from "./components/Login";
 import UserDetail from "./components/UserDetail";
 import ResourceNotFound from "./components/ResourceNotFound";
 
 function App() {
-  const user = useContext(UserContext);
   return (
     <BrowserRouter>
       <div className="App">

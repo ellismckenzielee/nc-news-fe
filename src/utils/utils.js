@@ -9,9 +9,10 @@ export const login = async (username) => {
   /* Get request to API simulates login */
   try {
     const response = await ncNewsApi.get(`users/${username}`);
-    return response.status;
+    console.log(response);
+    return { status: response.status, user: response.data.user };
   } catch (err) {
-    return err.response.status;
+    return { status: err.response.status };
   }
 };
 
@@ -39,16 +40,13 @@ export const handleLoginForm = async (username) => {
   /* Simple login form checking (length >0, alphanumeric & user exists) */
   if (!username) return "Please enter a username";
   if (!/^[a-zA-Z0-9]+$/.test(username)) return "Please use only alphanumeric characters";
-  const code = await login(username);
-  if (code === 200) {
-    return "success";
-  } else if (code === 404) {
-    return "Unsuccessful: User Does Not Exist";
-  }
+  const response = await login(username);
+  console.log(response);
+  return response;
 };
 
-export const handlePostCommentForm = async (username, body) => {
-  if (!username) return "Please Login";
+export const handlePostCommentForm = async (user, body) => {
+  if (!user.username) return "Please Login";
   if (body.length < 10) return "Please enter more than 10 characters";
   if (body.length > 100) return "Please enter fewer than 100 characters";
   return "success";

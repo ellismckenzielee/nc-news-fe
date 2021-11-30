@@ -9,3 +9,8 @@
 .comment-delete-button {
   background-color: red;
 }
+
+.comment-vote-button-containers > button {
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+}

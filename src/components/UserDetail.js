@@ -12,14 +12,25 @@ const UserDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { user, setUser } = useContext(UserContext);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isError, setIsError] = useState(false);
+  console.log(userDetails);
   const navigate = useNavigate();
   useEffect(() => {
     setIsLoading(true);
-    Promise.all([getUserByUsername(username).then(setUserDetails), getArticlesByUsername(username).then(setArticles)]).then(() => {
-      setIsLoading(false);
-    });
+    Promise.all([getUserByUsername(username).then((response) => setUserDetails(response.user)), getArticlesByUsername(username).then(setArticles)])
+      .then(() => {
+        setIsLoading(false);
+        setIsError(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+        setIsError(true);
+        setErrorMessage("User not found");
+      });
   }, [username]);
   if (isLoading) return <p> Loading... </p>;
+  if (isError) return <p>{errorMessage}</p>;
   return (
     <div className="UserDetail">
       <section className="user-details-container">
@@ -30,9 +41,9 @@ const UserDetail = () => {
           <img src={userDetails.avatar_url} className="user-details-image" />
         </figure>
       </section>
-      {username === user && !confirmDelete && (
+      {username === user.username && !confirmDelete && (
         <button
-        className="delete-user-profile-button"
+          className="delete-user-profile-button"
           onClick={() => {
             setConfirmDelete(true);
           }}
@@ -40,16 +51,15 @@ const UserDetail = () => {
           Delete Profile{" "}
         </button>
       )}
-      {username === user && confirmDelete && (
+      {user.username === username && confirmDelete && (
         <>
           <p> Are you sure you want to delete? </p>
           <button
-            
             onClick={() => {
               console.log("deleting", username);
               deleteUserByUsername(username).then(() => {
                 console.log("deleted");
-                setUser("");
+                setUser({});
                 navigate("/");
               });
             }}

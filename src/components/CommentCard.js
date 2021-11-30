@@ -1,11 +1,11 @@
 import "./styles/CommentCard.css";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { patchComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
 import useVotes from "../hooks/useVotes";
 import { deleteComment } from "../utils/api";
 const CommentCard = ({ comment, setComments }) => {
-  const { user } = useContext(UserContext);
+  const { user, loggedIn } = useContext(UserContext);
   const { author, created_at, body, votes, comment_id } = comment;
   const [voteIncrement, setVoteIncrement, hasVoted, setHasVoted] = useVotes();
 
@@ -16,7 +16,7 @@ const CommentCard = ({ comment, setComments }) => {
         <h6>{created_at}</h6>
         <p> {body} </p>
         <p> Votes: {votes + voteIncrement}</p>
-        {!hasVoted && (
+        {!hasVoted && loggedIn && (
           <div className="comment-vote-button-containers">
             <button
               onClick={() => {
@@ -36,7 +36,7 @@ const CommentCard = ({ comment, setComments }) => {
             >
               Vote Down
             </button>
-            {user === comment.author && (
+            {user.username === comment.author && (
               <button
                 onClick={() => {
                   deleteComment(comment_id).then(() => {

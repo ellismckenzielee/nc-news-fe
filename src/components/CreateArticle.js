@@ -1,6 +1,6 @@
 import "./styles/CreateArticle.css";
 import { UserContext } from "../contexts/UserContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useNavigate, Navigate } from "react-router";
 import { postArticle } from "../utils/api";
 import { handleCreateArticleBody, handleCreateArticleTitle } from "../utils/utils";
@@ -21,7 +21,7 @@ const CreateArticle = () => {
             const bodyErr = handleCreateArticleBody(body);
             const titleErr = handleCreateArticleTitle(title);
             if (titleErr === "" && bodyErr === "") {
-              postArticle({ body, title, author: user, topic }).then((article) => {
+              postArticle({ body, title, author: user.username, topic }).then((article) => {
                 navigate(`/articles/${article.article_id}`);
               });
             } else {
@@ -49,7 +49,7 @@ const CreateArticle = () => {
             type="textarea"
             id="body"
             value={body}
-            className='create-article-form-text-area'
+            className="create-article-form-text-area"
           ></textarea>
           <p className="create-article-form-warning">{bodyError}</p>
 
